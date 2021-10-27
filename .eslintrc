@@ -1,0 +1,44 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended", 
+    "airbnb", 
+    "plugin:prettier/recommended", 
+    
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "testing-library", "jest"],
+  "rules": {
+    "react/prefer-stateless-function": [0, { "igonrePureComponents": false }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-console": 1,
+    "no-unused-vars": 1,
+    "import/no-unresolved": 2,
+    "no-undefined": 2
+    
+  },
+  "overrides": [
+    {
+      "files":["**/*.test.js", "**/*.test.jsx"],
+      "env": {
+        "jest": true
+      },
+      "extends": ["plugin:testing-library/react", "plugin:jest/all"]
+    }
+
+  ]
+}
