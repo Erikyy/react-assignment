@@ -1,11 +1,9 @@
-import './styles/App.css';
+import './App.css';
 import React from 'react';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import { Query } from '@apollo/client/react/components';
-import StoreHeader from './components/StoreHeader';
-import { FETCH_CATEGORIES } from './queries';
-import PageComponent from './components/PageComponent';
+import StoreHeader from '../common/components/StoreHeader';
+import PageComponent from '../features/products/ProductsComponent';
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),

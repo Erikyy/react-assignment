@@ -1,8 +1,8 @@
 import React from 'react';
 import { Query } from '@apollo/client/react/components';
 import { Link } from 'react-router-dom';
-import { FETCH_CATEGORIES } from '../queries';
-import '../styles/StoreHeader.css';
+import { FETCH_CATEGORIES } from '../api/queries';
+import './StoreHeader.css';
 
 export default class StoreHeader extends React.Component {
   render() {
