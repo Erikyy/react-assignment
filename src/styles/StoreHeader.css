@@ -1,0 +1,16 @@
+.navbar {
+  background-color: #fff;
+}
+
+.nav-items {
+  display: inline-block;
+}
+
+.nav-items .nav-item {
+  list-style: none;
+  margin: auto;
+}
+
+.nav-items .nav-item a:active {
+  color: #5ece7b;
+}

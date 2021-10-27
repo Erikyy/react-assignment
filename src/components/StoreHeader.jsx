@@ -1,18 +1,28 @@
 import React from 'react';
 import { Query } from '@apollo/client/react/components';
+import { Link } from 'react-router-dom';
 import { FETCH_CATEGORIES } from '../queries';
+import '../styles/StoreHeader.css';
 
 export default class StoreHeader extends React.Component {
   render() {
     return (
-      <header>
-        <Query query={FETCH_CATEGORIES}>
-          {({ data }) => {
-            console.log(data);
-            return <h1>hello</h1>;
-          }}
-        </Query>
-      </header>
+      <div className="navbar">
+        <ul className="nav-items">
+          <Query query={FETCH_CATEGORIES}>
+            {({ loading, data }) => {
+              if (loading) return <p>loading</p>;
+              return data.categories.map((item, index) => (
+                <li className="nav-item">
+                  <Link style={{ textDecoration: 'none' }} to={item.name} key={String(index)}>
+                    {item.name}
+                  </Link>
+                </li>
+              ));
+            }}
+          </Query>
+        </ul>
+      </div>
     );
   }
 }
