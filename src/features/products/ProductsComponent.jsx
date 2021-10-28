@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class PageComponent extends React.Component {
   render() {
@@ -7,7 +6,4 @@ class PageComponent extends React.Component {
     return <h1>Pagecomponent: {category}</h1>;
   }
 }
-PageComponent.propTypes = {
-  category: PropTypes.string.isRequired,
-};
 export default PageComponent;

@@ -23,7 +23,10 @@
     "no-console": 0,
     "no-unused-vars": 1,
     "import/no-unresolved": 2,
-    "no-undefined": 2
+    "no-undefined": 2,
+    "prefer-destructuring": "off",
+    "react/prop-types": 0,
+    "react/destructuring-assignment": 0
   },
   "overrides": [
     {

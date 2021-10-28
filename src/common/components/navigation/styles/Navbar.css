@@ -1,0 +1,40 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: white;
+  padding: 0 1rem;
+  display: flex;
+}
+
+.navbar .nav-list {
+  display: flex;
+  flex: 1;
+}
+
+.navbar .nav-logo {
+  display: flex;
+  flex: 2;
+  flex-grow: 4;
+}
+.nav-list {
+  align-items: center;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.nav-item {
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: black 2px solid;
+}
