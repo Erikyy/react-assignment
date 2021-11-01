@@ -7,7 +7,9 @@ import PageComponent from '../features/products/ProductsComponent';
 import { fetchCategories } from '../features/categories/CategoriesSlice';
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    categories: state.CategoriesReducer.categories,
+  };
 };
 
 const mapDispatchToProps = {
@@ -16,9 +18,9 @@ const mapDispatchToProps = {
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.fetchCategories({ name: 'all' });
-    this.props.fetchCategories({ name: 'clothes' });
-    this.props.fetchCategories({ name: 'tech' });
+    this.props.fetchCategories({ name: 'all', path: '/' });
+    this.props.fetchCategories({ name: 'clothes', path: '/clothes' });
+    this.props.fetchCategories({ name: 'tech', path: '/tech' });
   }
 
   render() {
@@ -26,10 +28,9 @@ class App extends React.Component {
       <Router>
         <StoreHeader />
         <Switch>
-          <Route path="/" exact>
-            <h1>all</h1>
-          </Route>
-          <Route path="/tech" component={PageComponent} />
+          {this.props.categories.map((category) => (
+            <Route path={category.path} component={PageComponent} />
+          ))}
         </Switch>
       </Router>
     );

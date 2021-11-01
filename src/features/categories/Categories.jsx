@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import NavItem from '../../common/components/navigation/NavItem';
-import NavList from '../../common/components/navigation/NavList';
+import { NavList } from '../../common/components/navigation/Navbar';
+import NavbarLink from '../../common/components/navigation/NavbarLink';
 import './Categories.css';
 
 const mapStateToProps = (state) => {
@@ -14,11 +14,11 @@ const mapStateToProps = (state) => {
 class Categories extends React.Component {
   render() {
     return (
-      <NavList className="left">
+      <NavList left>
         {this.props.categories.map((category, index) => (
-          <NavItem key={String(index)}>
-            <p>{category.name}</p>
-          </NavItem>
+          <NavbarLink path={category.path} key={String(index)}>
+            {category.name}
+          </NavbarLink>
         ))}
       </NavList>
     );

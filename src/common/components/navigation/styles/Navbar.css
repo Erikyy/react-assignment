@@ -20,6 +20,7 @@ ul {
   flex: 2;
   flex-grow: 4;
 }
+
 .nav-list {
   align-items: center;
 }
@@ -36,5 +37,4 @@ ul {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  border-bottom: black 2px solid;
 }
