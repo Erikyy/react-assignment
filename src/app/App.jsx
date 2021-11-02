@@ -1,9 +1,9 @@
 import './App.css';
 import React from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import StoreHeader from '../common/components/StoreHeader';
-import PageComponent from '../features/products/ProductsComponent';
+import PageComponent from '../features/products/PageComponent';
 import { fetchCategories } from '../features/categories/CategoriesSlice';
 
 const mapStateToProps = (state) => {
@@ -18,9 +18,9 @@ const mapDispatchToProps = {
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.fetchCategories({ name: 'all', path: '/' });
-    this.props.fetchCategories({ name: 'clothes', path: '/clothes' });
-    this.props.fetchCategories({ name: 'tech', path: '/tech' });
+    this.props.fetchCategories({ name: 'all' });
+    this.props.fetchCategories({ name: 'clothes' });
+    this.props.fetchCategories({ name: 'tech' });
   }
 
   render() {
@@ -28,9 +28,9 @@ class App extends React.Component {
       <Router>
         <StoreHeader />
         <Switch>
-          {this.props.categories.map((category) => (
-            <Route path={category.path} component={PageComponent} />
-          ))}
+          {/* todo: maybe not hardcode this redirect */}
+          <Route exact path="/" render={() => <Redirect to="/all" />} />
+          <Route path="/:page" component={PageComponent} />
         </Switch>
       </Router>
     );

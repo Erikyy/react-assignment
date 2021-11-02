@@ -16,7 +16,7 @@ class Categories extends React.Component {
     return (
       <NavList left>
         {this.props.categories.map((category, index) => (
-          <NavbarLink path={category.path} key={String(index)}>
+          <NavbarLink path={`/${category.name}`} key={String(index)}>
             {category.name}
           </NavbarLink>
         ))}

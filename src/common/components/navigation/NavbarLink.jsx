@@ -3,28 +3,24 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { NavItem } from './Navbar';
 
 class NavbarLink extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isActive: false,
-    };
-  }
-
-  updateItem() {
-    const location = this.props.location.pathname;
-    this.setState({
-      isActive: location === this.props.path,
-    });
-  }
-
   render() {
+    const isActive = this.props.location.pathname === this.props.path;
     return (
       <NavItem
         style={{
-          borderBottom: this.state.isActive ? 'solid 2px black' : '',
+          borderBottom: isActive ? 'solid 2px var(--color-green)' : '',
         }}
       >
-        <NavLink to={this.props.path}>{this.props.children}</NavLink>
+        <NavLink
+          style={{
+            color: 'black',
+            textDecoration: 'none',
+          }}
+          activeStyle={{ color: 'var(--color-green)' }}
+          to={this.props.path}
+        >
+          {this.props.children}
+        </NavLink>
       </NavItem>
     );
   }
