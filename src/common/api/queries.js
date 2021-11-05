@@ -8,10 +8,31 @@ export const FETCH_CATEGORIES = gql`
   }
 `;
 
-export const FETCH_CATEGORY = gql`
+export const FETCH_PRODUCTS_BY_CATEGORY = gql`
   query FetchCategory($title: String!) {
     category(input: { title: $title }) {
-      name
+      products {
+        name
+        brand
+        inStock
+        description
+        gallery
+        category
+        attributes {
+          id
+          name
+          type
+          items {
+            id
+            value
+          }
+        }
+        id
+        prices {
+          currency
+          amount
+        }
+      }
     }
   }
 `;

@@ -31,7 +31,7 @@ class CurrencySwitcher extends React.Component {
 
   componentDidMount() {
     this.props.fetchCurrencies('USD');
-    this.props.fetchCurrencies('EUR');
+    this.props.fetchCurrencies('AUD');
     this.props.fetchCurrencies('JPY');
   }
 
@@ -39,6 +39,7 @@ class CurrencySwitcher extends React.Component {
     console.log(this.props.currencies);
     return (
       <NavItem padding={0.1}>
+        {/* todo: add chevron icon to currency switcher button */}
         <Button
           style={{
             padding: '12px',

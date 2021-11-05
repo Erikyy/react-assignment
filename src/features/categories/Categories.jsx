@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setActiveCategory } from './CategoriesSlice';
 import { NavList } from '../../common/components/navigation/Navbar';
 import NavbarLink from '../../common/components/navigation/NavbarLink';
 import './Categories.css';
@@ -11,12 +12,20 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = {
+  setActiveCategory,
+};
+
 class Categories extends React.Component {
   render() {
     return (
       <NavList left>
         {this.props.categories.map((category, index) => (
-          <NavbarLink path={`/${category.name}`} key={String(index)}>
+          <NavbarLink
+            path={`/${category.name}`}
+            key={String(index)}
+            onItemClicked={() => console.log('click category')}
+          >
             {category.name}
           </NavbarLink>
         ))}
@@ -25,4 +34,4 @@ class Categories extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Categories);
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

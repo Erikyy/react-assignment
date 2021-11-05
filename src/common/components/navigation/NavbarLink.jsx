@@ -18,6 +18,7 @@ class NavbarLink extends React.Component {
           }}
           activeStyle={{ color: 'var(--color-green)' }}
           to={this.props.path}
+          onClick={() => this.props.onItemClicked}
         >
           {this.props.children}
         </NavLink>

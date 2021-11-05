@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import StoreHeader from '../common/components/StoreHeader';
 import PageComponent from '../features/products/PageComponent';
 import { fetchCategories } from '../features/categories/CategoriesSlice';
+import { fetchProducts } from '../features/products/ProductsSlice';
 
 const mapStateToProps = (state) => {
   return {
@@ -14,6 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   fetchCategories,
+  fetchProducts,
 };
 
 class App extends React.Component {
@@ -21,6 +23,7 @@ class App extends React.Component {
     this.props.fetchCategories({ name: 'all' });
     this.props.fetchCategories({ name: 'clothes' });
     this.props.fetchCategories({ name: 'tech' });
+    this.props.fetchProducts('');
   }
 
   render() {
