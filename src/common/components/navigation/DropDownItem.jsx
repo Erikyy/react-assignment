@@ -1,7 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
 
-export default class DropDownItem extends React.Component {
-  render() {
-    return <p>dropdownItem</p>;
-  }
-}
+const DropDownItem = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+`;
+
+export default DropDownItem;
