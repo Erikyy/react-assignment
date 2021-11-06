@@ -26,7 +26,8 @@
     "no-undefined": 2,
     "prefer-destructuring": "off",
     "react/prop-types": 0,
-    "react/destructuring-assignment": 0
+    "react/destructuring-assignment": 0,
+    "react/no-danger": 2
   },
   "overrides": [
     {

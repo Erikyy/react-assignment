@@ -4,7 +4,7 @@ import { NavItem } from './Navbar';
 
 class NavbarLink extends React.Component {
   render() {
-    const isActive = this.props.location.pathname === this.props.path;
+    const isActive = this.props.location.pathname.includes(this.props.path);
     return (
       <NavItem
         style={{
@@ -16,6 +16,7 @@ class NavbarLink extends React.Component {
             color: 'black',
             textDecoration: 'none',
           }}
+          className={isActive ? 'nav-link-active' : 'nav-link'}
           activeStyle={{ color: 'var(--color-green)' }}
           to={this.props.path}
           onClick={() => this.props.onItemClicked()}

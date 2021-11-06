@@ -4,6 +4,9 @@ export const NavItem = styled.li`
   padding: ${(props) => {
     return props.padding ? `${props.padding}rem;` : '1rem';
   }};
+  & > .nav-link-active {
+    color: var(--color-green) !important;
+  }
 `;
 
 export const NavList = styled.ul`

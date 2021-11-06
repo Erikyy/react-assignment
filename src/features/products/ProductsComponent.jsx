@@ -11,8 +11,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-class PageComponent extends React.Component {
+class ProductsComponent extends React.Component {
   render() {
+    console.log(this.props.match.url);
     return (
       <div className="page-container">
         <div className="category-name">
@@ -34,4 +35,4 @@ class PageComponent extends React.Component {
     );
   }
 }
-export default connect(mapStateToProps)(PageComponent);
+export default connect(mapStateToProps)(ProductsComponent);

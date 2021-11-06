@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { FETCH_PRODUCTS_BY_CATEGORY } from './queries';
+import { FETCH_PRODUCTS_BY_CATEGORY, FETCH_PRODUCT_BY_ID } from './queries';
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -11,3 +11,7 @@ export const fetchProductsByCategory = async (category) => {
 };
 
 export const fetchAllCurrencies = async () => {};
+
+export const fetchProductById = async (id) => {
+  return client.query({ query: FETCH_PRODUCT_BY_ID, variables: { id } });
+};

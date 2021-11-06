@@ -3,9 +3,10 @@ import React from 'react';
 import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import StoreHeader from '../common/components/StoreHeader';
-import PageComponent from '../features/products/PageComponent';
-import { fetchCategories } from '../features/categories/CategoriesSlice';
+import ProductsComponent from '../features/products/ProductsComponent';
+import { fetchCategories, setActiveCategory } from '../features/categories/CategoriesSlice';
 import { fetchProducts } from '../features/products/ProductsSlice';
+import ProductComponent from '../features/productdetail/ProductComponent';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,6 +17,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   fetchCategories,
   fetchProducts,
+  setActiveCategory,
 };
 
 class App extends React.Component {
@@ -24,6 +26,7 @@ class App extends React.Component {
     this.props.fetchCategories({ name: 'clothes' });
     this.props.fetchCategories({ name: 'tech' });
     this.props.fetchProducts('');
+    this.props.setActiveCategory('all');
   }
 
   render() {
@@ -33,7 +36,12 @@ class App extends React.Component {
         <Switch>
           {/* todo: maybe not hardcode this redirect */}
           <Route exact path="/" render={() => <Redirect to="/all" />} />
-          <Route path="/:page" component={PageComponent} />
+          {this.props.categories.map((category, index) => {
+            return (
+              <Route path={`/${category.name}`} component={ProductsComponent} key={String(index)} />
+            );
+          })}
+          <Route path="/product/:category/:id" component={ProductComponent} />
         </Switch>
       </Router>
     );

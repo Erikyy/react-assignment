@@ -43,10 +43,28 @@ export const FETCH_CURRENCIES = gql`
   }
 `;
 
-export const FETCH_PRODUCT = gql`
-  query FetchProduct($id: String!) {
+export const FETCH_PRODUCT_BY_ID = gql`
+  query FetchProductById($id: String!) {
     product(id: $id) {
       name
+      inStock
+      brand
+      gallery
+      description
+      attributes {
+        name
+        id
+        type
+        items {
+          id
+          value
+          displayValue
+        }
+      }
+      prices {
+        currency
+        amount
+      }
     }
   }
 `;
