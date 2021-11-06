@@ -36,7 +36,6 @@ class CurrencySwitcher extends React.Component {
   }
 
   render() {
-    console.log(this.props.currencies);
     return (
       <NavItem padding={0.1}>
         {/* todo: add chevron icon to currency switcher button */}

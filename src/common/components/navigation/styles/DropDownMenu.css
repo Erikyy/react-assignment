@@ -3,6 +3,7 @@
   padding: 0;
   overflow: hidden;
   transform: translateY(5%);
+  z-index: 1;
 }
 
 .menu {
@@ -12,18 +13,22 @@
 .dropdown-enter {
   opacity: 0;
   transform: translateY(0%);
+  z-index: 1;
 }
 .dropdown-enter-active {
   opacity: 1;
   transform: translateY(5%);
   transition: opacity 100ms, transform 100ms;
+  z-index: 1;
 }
 .dropdown-exit {
   transform: translateY(5%);
   opacity: 1;
+  z-index: 1;
 }
 .dropdown-exit-active {
   opacity: 0;
   transform: translateY(0%);
   transition: opacity 100ms, transform 100ms;
+  z-index: 1;
 }

@@ -26,7 +26,12 @@ export const ProductsSlice = createSlice({
         status: 'success',
       };
     });
-    builder.addCase(fetchProducts.rejected, (state, action) => {});
+    builder.addCase(fetchProducts.rejected, (state, action) => {
+      return {
+        products: [],
+        status: 'error',
+      };
+    });
   },
 });
 

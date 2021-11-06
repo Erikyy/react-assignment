@@ -16,3 +16,11 @@
   height: auto;
   position: absolute;
 }
+
+.product-name {
+  padding-top: 15px;
+}
+
+.product-price {
+  padding-top: 15px;
+}

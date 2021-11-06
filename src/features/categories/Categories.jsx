@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { setActiveCategory } from './CategoriesSlice';
 import { NavList } from '../../common/components/navigation/Navbar';
 import NavbarLink from '../../common/components/navigation/NavbarLink';
-import './Categories.css';
+import { fetchProducts } from '../products/ProductsSlice';
 
 const mapStateToProps = (state) => {
   const categories = state.CategoriesReducer.categories;
@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   setActiveCategory,
+  fetchProducts,
 };
 
 class Categories extends React.Component {
@@ -24,7 +25,14 @@ class Categories extends React.Component {
           <NavbarLink
             path={`/${category.name}`}
             key={String(index)}
-            onItemClicked={() => console.log('click category')}
+            onItemClicked={() => {
+              this.props.setActiveCategory(category.name);
+              if (category.name === 'all') {
+                this.props.fetchProducts('');
+              } else {
+                this.props.fetchProducts(category.name);
+              }
+            }}
           >
             {category.name}
           </NavbarLink>
