@@ -1,0 +1,15 @@
+.product-page-container {
+  display: flex;
+}
+
+.product-page-image-container {
+}
+
+.product-page-main-img {
+  width: 50%;
+  height: auto;
+}
+
+.product-description-container {
+  padding-right: 1rem;
+}

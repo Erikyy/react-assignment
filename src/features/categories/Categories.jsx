@@ -20,7 +20,12 @@ const mapDispatchToProps = {
 class Categories extends React.Component {
   render() {
     return (
-      <NavList left>
+      <NavList
+        left
+        style={{
+          paddingLeft: '3rem',
+        }}
+      >
         {this.props.categories.map((category, index) => (
           <NavbarLink
             path={`/${category.name}`}

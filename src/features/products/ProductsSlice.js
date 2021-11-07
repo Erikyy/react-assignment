@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchProductsByCategory } from '../../common/api/StoreApi';
+import { ApifetchProductsByCategory } from '../../common/api/StoreApi';
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async (category) => {
-  const res = await fetchProductsByCategory(category);
+  const res = await ApifetchProductsByCategory(category);
   return res;
 });
 
@@ -12,7 +12,6 @@ export const ProductsSlice = createSlice({
     products: [],
     status: '',
   },
-  reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchProducts.pending, (state, action) => {
       return {

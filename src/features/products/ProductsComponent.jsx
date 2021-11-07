@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ProductCard from './ProductCard';
+import ProductCard from '../../common/components/product/ProductCard';
 import './styles/ProductPage.css';
 
 const mapStateToProps = (state) => {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 class ProductsComponent extends React.Component {
   render() {
-    console.log(this.props.match.url);
+    console.log(this.props.activeCategory);
     return (
       <div className="page-container">
         <div className="category-name">
@@ -21,10 +21,10 @@ class ProductsComponent extends React.Component {
         </div>
         <div className="product-container">
           {this.props.products.map((product, index) => {
-            console.log(product);
             return (
               <ProductCard
                 data={product}
+                activeCategory={this.props.activeCategory}
                 activeCurrency={this.props.activeCurrency}
                 key={String(index)}
               />

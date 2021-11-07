@@ -6,11 +6,12 @@ import StoreHeader from '../common/components/StoreHeader';
 import ProductsComponent from '../features/products/ProductsComponent';
 import { fetchCategories, setActiveCategory } from '../features/categories/CategoriesSlice';
 import { fetchProducts } from '../features/products/ProductsSlice';
-import ProductComponent from '../features/productdetail/ProductComponent';
+import ProductComponent from '../features/products/ProductComponent';
 
 const mapStateToProps = (state) => {
   return {
     categories: state.CategoriesReducer.categories,
+    activeCategory: state.CategoriesReducer.activeCategory,
   };
 };
 
@@ -27,6 +28,7 @@ class App extends React.Component {
     this.props.fetchCategories({ name: 'tech' });
     this.props.fetchProducts('');
     this.props.setActiveCategory('all');
+    console.log('App mounted');
   }
 
   render() {

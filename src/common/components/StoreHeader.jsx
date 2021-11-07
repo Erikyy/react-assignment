@@ -12,7 +12,12 @@ export default class StoreHeader extends React.Component {
       <Navbar>
         <Categories />
         <NavLogo src="/a-logo.png" size={40} />
-        <NavList right>
+        <NavList
+          right
+          style={{
+            paddingRight: '3rem',
+          }}
+        >
           <CurrencySwitcher />
           <NavItem padding={0.1}>
             <IconButton
