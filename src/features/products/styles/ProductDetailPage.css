@@ -1,15 +1,18 @@
 .product-page-container {
   display: flex;
+  padding-top: 3rem;
+  padding: 5rem;
+  margin: 0 auto;
 }
 
 .product-page-image-container {
+  position: relative;
 }
 
 .product-page-main-img {
-  width: 50%;
+  width: 100%;
   height: auto;
 }
 
 .product-description-container {
-  padding-right: 1rem;
 }

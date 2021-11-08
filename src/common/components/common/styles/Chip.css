@@ -1,0 +1,33 @@
+.chip {
+  border: 1px solid black;
+  display: inline-flex;
+  cursor: default;
+  padding: 4px 6px 4px 6px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  min-width: 40px;
+  min-height: 20px;
+  justify-content: center;
+  transition: all 200ms ease;
+}
+
+.chip input {
+  display: none;
+}
+
+.chip:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.chip.chip-selected {
+  background-color: black;
+  color: white;
+}
+
+.chip.chip-swatch {
+  border: none;
+}
+
+.chip.chip-swatch.chip-selected {
+  border: 1px solid black;
+}

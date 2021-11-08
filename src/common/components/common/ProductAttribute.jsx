@@ -35,3 +35,5 @@ export const AttributeSwatch = styled.li`
   min-height: 20px;
   min-width: 40px;
 `;
+
+export const AttributeInput = styled.input``;

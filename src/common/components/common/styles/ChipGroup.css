@@ -1,0 +1,4 @@
+.chipgroup {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -6,12 +6,15 @@ import { fetchProductById } from './ProductSlice';
 import './styles/ProductDetailPage.css';
 import {
   AttributeContainer,
+  AttributeInput,
   AttributeItem,
   AttributeList,
   AttributeSwatch,
   AttributeTitle,
 } from '../../common/components/common/ProductAttribute';
 import { ButtonPrimary } from '../../common/components/common/Button';
+import Chip from '../../common/components/common/Chip';
+import ChipGroup from '../../common/components/common/ChipGroup';
 
 const purify = DOMPurify.sanitize;
 
@@ -61,29 +64,19 @@ class ProductComponent extends React.Component {
               {this.props.product.name}
             </h2>
             {this.props.product.attributes.map((attribute, index) => {
+              console.log(attribute);
+              if (attribute.type === 'swatch') {
+                return (
+                  <AttributeContainer key={String(index)}>
+                    <AttributeTitle>{attribute.name}:</AttributeTitle>
+                    <ChipGroup swatchGroup data={attribute.items} />
+                  </AttributeContainer>
+                );
+              }
               return (
                 <AttributeContainer key={String(index)}>
                   <AttributeTitle>{attribute.name}:</AttributeTitle>
-                  <AttributeList>
-                    {attribute.items.map((item, idx) => {
-                      if (attribute.type === 'swatch') {
-                        return (
-                          <AttributeSwatch
-                            style={{
-                              color: item.value,
-                              backgroundColor: item.value,
-                            }}
-                            key={String(idx)}
-                          />
-                        );
-                      }
-                      return (
-                        <AttributeItem onClick={() => console.log('click')} key={String(idx)}>
-                          <p>{item.value}</p>
-                        </AttributeItem>
-                      );
-                    })}
-                  </AttributeList>
+                  <ChipGroup data={attribute.items} />
                 </AttributeContainer>
               );
             })}
