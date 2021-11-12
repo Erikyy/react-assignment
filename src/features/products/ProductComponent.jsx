@@ -6,15 +6,11 @@ import { fetchProductById } from './ProductSlice';
 import './styles/ProductDetailPage.css';
 import {
   AttributeContainer,
-  AttributeInput,
-  AttributeItem,
-  AttributeList,
-  AttributeSwatch,
   AttributeTitle,
-} from '../../common/components/common/ProductAttribute';
+} from '../../common/components/product/ProductAttribute';
 import { ButtonPrimary } from '../../common/components/common/Button';
-import Chip from '../../common/components/common/Chip';
 import ChipGroup from '../../common/components/common/ChipGroup';
+import ProductImages from '../../common/components/product/ProductImages';
 
 const purify = DOMPurify.sanitize;
 
@@ -50,9 +46,7 @@ class ProductComponent extends React.Component {
       console.log(this.props.product.attributes[0]);
       return (
         <div className="product-page-container">
-          <div className="product-page-image-container">
-            <img className="product-page-main-img" src={this.props.product.gallery[0]} alt="img" />
-          </div>
+          <ProductImages data={this.props.product.gallery} />
           <div className="product-description-container">
             <h1>{this.props.product.brand}</h1>
             <h2

@@ -2,17 +2,20 @@
   display: flex;
   padding-top: 3rem;
   padding: 5rem;
+  padding-right: 15rem;
   margin: 0 auto;
 }
 
-.product-page-image-container {
-  position: relative;
-}
-
-.product-page-main-img {
-  width: 100%;
-  height: auto;
-}
-
 .product-description-container {
+  padding-left: 7rem;
+}
+
+@media screen and (max-width: 900px) {
+  .product-page-container {
+    flex-direction: column;
+    padding-right: 5rem;
+  }
+  .product-description-container {
+    padding: 0;
+  }
 }

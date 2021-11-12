@@ -9,10 +9,7 @@
   min-height: 20px;
   justify-content: center;
   transition: all 200ms ease;
-}
-
-.chip input {
-  display: none;
+  font-family: 'Roboto';
 }
 
 .chip:hover {
@@ -25,9 +22,9 @@
 }
 
 .chip.chip-swatch {
-  border: none;
+  border: 1px solid black;
 }
 
 .chip.chip-swatch.chip-selected {
-  border: 1px solid black;
+  border: 2px solid black;
 }
