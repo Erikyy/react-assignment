@@ -13,6 +13,7 @@ const mapStateToProps = (state) => {
   return {
     currencies,
     activeCurrency,
+    status: state.CurrencyReducer.status,
   };
 };
 
@@ -47,16 +48,18 @@ class CurrencySwitcher extends React.Component {
           }}
           open={this.state.open}
         >
-          {this.props.currencies.map((currency, index) => {
-            return (
-              <DropDownItem key={String(index)}>
-                <Button onClick={() => this.props.setActiveCurrency(currency)}>
-                  {getSymbolFromCurrency(currency)}&nbsp;
-                  {currency}
-                </Button>
-              </DropDownItem>
-            );
-          })}
+          {this.props.status === 'success'
+            ? this.props.currencies.map((currency, index) => {
+                return (
+                  <DropDownItem key={String(index)}>
+                    <Button onClick={() => this.props.setActiveCurrency(currency)}>
+                      {getSymbolFromCurrency(currency)}&nbsp;
+                      {currency}
+                    </Button>
+                  </DropDownItem>
+                );
+              })
+            : ''}
         </DropDownMenu>
       </NavItem>
     );
