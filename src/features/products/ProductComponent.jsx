@@ -41,9 +41,7 @@ class ProductComponent extends React.Component {
   }
 
   render() {
-    console.log(this.props.status);
     if (this.props.status === 'success') {
-      console.log(this.props.product.attributes[0]);
       return (
         <div className="product-page-container">
           <ProductImages data={this.props.product.gallery} />
@@ -58,7 +56,6 @@ class ProductComponent extends React.Component {
               {this.props.product.name}
             </h2>
             {this.props.product.attributes.map((attribute, index) => {
-              console.log(attribute);
               if (attribute.type === 'swatch') {
                 return (
                   <AttributeContainer key={String(index)}>

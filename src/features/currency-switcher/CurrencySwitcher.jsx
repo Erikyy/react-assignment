@@ -29,12 +29,6 @@ class CurrencySwitcher extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.props.fetchCurrencies('USD');
-    this.props.fetchCurrencies('AUD');
-    this.props.fetchCurrencies('JPY');
-  }
-
   render() {
     return (
       <NavItem padding={0.1}>

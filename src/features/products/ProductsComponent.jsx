@@ -13,7 +13,6 @@ const mapStateToProps = (state) => {
 
 class ProductsComponent extends React.Component {
   render() {
-    console.log(this.props.activeCategory);
     return (
       <div className="page-container">
         <div className="category-name">
