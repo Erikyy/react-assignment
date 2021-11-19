@@ -46,6 +46,7 @@ export const FETCH_CURRENCIES = gql`
 export const FETCH_PRODUCT_BY_ID = gql`
   query FetchProductById($id: String!) {
     product(id: $id) {
+      id
       name
       inStock
       brand

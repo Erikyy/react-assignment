@@ -5,6 +5,7 @@ import { Navbar, NavLogo, NavList, NavItem } from './navigation/Navbar';
 import { IconButton } from './common/Button';
 import CartIcon from '../../icons/Icons';
 import CurrencySwitcher from '../../features/currency-switcher/CurrencySwitcher';
+import CartMenu from '../../features/cart/cartmenu/CartMenu';
 
 export default class StoreHeader extends React.Component {
   render() {
@@ -19,15 +20,7 @@ export default class StoreHeader extends React.Component {
           }}
         >
           <CurrencySwitcher />
-          <NavItem padding={0.1}>
-            <IconButton
-              style={{
-                padding: '12px',
-              }}
-            >
-              <CartIcon />
-            </IconButton>
-          </NavItem>
+          <CartMenu />
         </NavList>
       </Navbar>
     );

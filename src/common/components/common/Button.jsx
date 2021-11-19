@@ -24,3 +24,10 @@ export const ButtonPrimary = styled.button`
   color: white;
   padding: 1rem;
 `;
+
+export const ButtonOutline = styled.button`
+  background: none;
+  border: 1px solid black;
+  padding: 1rem;
+  align-items: center;
+`;

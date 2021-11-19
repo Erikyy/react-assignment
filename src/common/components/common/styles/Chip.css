@@ -9,7 +9,6 @@
   min-height: 20px;
   justify-content: center;
   transition: all 200ms ease;
-  font-family: 'Roboto';
 }
 
 .chip:hover {

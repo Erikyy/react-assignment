@@ -11,6 +11,7 @@ import {
 import { ButtonPrimary } from '../../common/components/common/Button';
 import ChipGroup from '../../common/components/common/ChipGroup';
 import ProductImages from '../../common/components/product/ProductImages';
+import { addItemToCart } from '../cart/CartSlice';
 
 const purify = DOMPurify.sanitize;
 
@@ -23,6 +24,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = {
   fetchProductById,
+  addItemToCart,
 };
 
 class ProductComponent extends React.Component {
@@ -77,6 +79,11 @@ class ProductComponent extends React.Component {
             <ButtonPrimary
               style={{
                 width: '100%',
+              }}
+              onClick={() => {
+                this.props.addItemToCart({
+                  product: this.props.product,
+                });
               }}
             >
               ADD TO CART

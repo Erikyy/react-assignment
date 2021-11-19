@@ -11,12 +11,14 @@ import {
 } from '../features/categories/CategoriesSlice';
 import { fetchProducts } from '../features/products/ProductsSlice';
 import ProductComponent from '../features/products/ProductComponent';
-import { fetchCurrencies } from '../features/currency-switcher/CurrencySlice';
+import { fetchCurrencies, setActiveCurrency } from '../features/currency-switcher/CurrencySlice';
+import CartPage from '../features/cart/cartpage/CartPageComponet';
 
 const mapStateToProps = (state) => {
   return {
     categories: state.CategoriesReducer.categories,
     activeCategory: state.CategoriesReducer.activeCategory,
+    activeCurrency: state.CurrencyReducer.activeCurrency,
   };
 };
 
@@ -26,6 +28,7 @@ const mapDispatchToProps = {
   fetchProducts,
   setActiveCategory,
   fetchCurrencies,
+  setActiveCurrency,
 };
 
 class App extends React.Component {
@@ -37,6 +40,11 @@ class App extends React.Component {
     if (this.props.activeCategory === '') {
       this.props.setActiveCategory('all');
     }
+
+    if (this.props.activeCurrency === '') {
+      this.props.setActiveCurrency('USD');
+    }
+
     this.props.fetchProducts(this.props.activeCategory === 'all' ? '' : this.props.activeCategory);
   }
 
@@ -53,6 +61,7 @@ class App extends React.Component {
             );
           })}
           <Route path="/product/:category/:id" component={ProductComponent} />
+          <Route path="/cart" component={CartPage} />
         </Switch>
       </Router>
     );

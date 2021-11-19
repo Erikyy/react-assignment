@@ -17,7 +17,7 @@ import { CategoriesReducer } from '../features/categories/CategoriesSlice';
 import { CurrencyReducer } from '../features/currency-switcher/CurrencySlice';
 import { ProductsReducer } from '../features/products/ProductsSlice';
 import { ProductReducer } from '../features/products/ProductSlice';
-
+import { CartReducer } from '../features/cart/CartSlice';
 import migrations from './migrations';
 
 const rootReducer = combineReducers({
@@ -25,6 +25,7 @@ const rootReducer = combineReducers({
   CurrencyReducer,
   ProductsReducer,
   ProductReducer,
+  CartReducer,
 });
 
 const persistedReducer = persistReducer(
