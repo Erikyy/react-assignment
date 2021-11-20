@@ -2,10 +2,12 @@
   padding: 2rem;
   padding-right: 4rem;
   padding-left: 4rem;
+  padding-top: 8rem;
 }
 
 .category-name {
-  padding-bottom: 4%;
+  padding-bottom: 8rem;
+  text-transform: capitalize;
 }
 
 .product-container {

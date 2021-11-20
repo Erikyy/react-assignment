@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import getSymbolFromCurrency from 'currency-symbol-map';
+
 import { NavItem } from '../../../common/components/navigation/Navbar';
 import { ButtonOutline, ButtonPrimary, IconButton } from '../../../common/components/common/Button';
-import CartIcon from '../../../icons/Icons';
+import { CartIcon } from '../../../icons/Icons';
 import Badge from '../../../common/components/common/Badge';
 import DropDownMenu from '../../../common/components/navigation/DropDownMenu';
 import DropDownItem from '../../../common/components/navigation/DropDownItem';
@@ -16,6 +19,7 @@ import {
   removeItemFromCart,
   addTotalAmount,
   subtractTotalAmount,
+  setCartMenuOpen,
 } from '../CartSlice';
 
 const mapStateToProps = (state) => {
@@ -23,6 +27,7 @@ const mapStateToProps = (state) => {
     totalItemQuantity: state.CartReducer.totalItemQuantity,
     products: state.CartReducer.products,
     totalAmount: state.CartReducer.totalAmount,
+    cartMenuOpen: state.CartReducer.cartMenuOpen,
     activeCurrency: state.CurrencyReducer.activeCurrency,
   };
 };
@@ -32,14 +37,12 @@ const mapDispatchToProps = {
   removeItemFromCart,
   addTotalAmount,
   subtractTotalAmount,
+  setCartMenuOpen,
 };
 
 class CartMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-    };
+  redirectToCartPage() {
+    this.props.history.push('cart');
   }
 
   incrementTotalPrice(tempTotalPrice, item) {
@@ -61,27 +64,26 @@ class CartMenu extends React.Component {
       badge = <Badge count={this.props.totalItemQuantity} />;
     }
     return (
-      <NavItem padding={0.1}>
+      <NavItem padding={0.2}>
         <IconButton
           style={{
             padding: '12px',
           }}
           onClick={() => {
-            this.setState((prevState) => ({
-              open: !prevState.open,
-            }));
+            this.props.setCartMenuOpen(!this.props.cartMenuOpen);
           }}
         >
           {badge}
           <CartIcon />
         </IconButton>
+
         <DropDownMenu
           style={{
+            top: '2.5rem',
             right: '7rem',
-            border: '2px solid var(--color-dark-gray)',
             backgroundColor: '#fff',
           }}
-          open={this.state.open}
+          open={this.props.cartMenuOpen}
         >
           <DropDownItem
             style={{
@@ -124,12 +126,21 @@ class CartMenu extends React.Component {
             <div className="cart-menu-total-amount-container">
               <p className="cart-menu-total-title">Total</p>
               <p className="cart-menu-total-amount">
-                {Math.round((tempTotalPrice + Number.EPSILON) * 100) / 100}
+                {`${getSymbolFromCurrency(this.props.activeCurrency)}${
+                  Math.round((tempTotalPrice + Number.EPSILON) * 100) / 100
+                }`}
               </p>
             </div>
           </DropDownItem>
           <DropDownItem className="cart-menu-button-container">
-            <ButtonOutline className="button-outline">VIEW BAG</ButtonOutline>
+            <ButtonOutline
+              className="button-outline"
+              onClick={() => {
+                this.redirectToCartPage();
+              }}
+            >
+              VIEW BAG
+            </ButtonOutline>
             <ButtonPrimary className="button-primary">CHECK OUT</ButtonPrimary>
           </DropDownItem>
         </DropDownMenu>
@@ -138,4 +149,4 @@ class CartMenu extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CartMenu));

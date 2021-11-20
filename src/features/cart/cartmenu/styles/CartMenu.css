@@ -20,13 +20,11 @@
 }
 
 .cart-menu-total-amount {
-  justify-content: end;
   font-weight: bold;
-  width: 100%;
+  margin-left: auto;
 }
 
 .cart-menu-total-title {
-  justify-content: end;
   font-weight: 900;
   font-size: 16;
   font-weight: bold;

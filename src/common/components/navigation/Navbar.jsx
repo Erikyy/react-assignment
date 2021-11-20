@@ -4,6 +4,7 @@ export const NavItem = styled.li`
   padding: ${(props) => {
     return props.padding ? `${props.padding}rem;` : '1rem';
   }};
+  padding-top: 1rem;
   & > .nav-link-active {
     color: var(--color-green) !important;
   }
@@ -24,7 +25,10 @@ export const NavLogo = styled.img`
 
 export const Navbar = styled.nav`
   background-color: white;
+  position: fixed;
+  width: 100%;
   padding: 0 1rem;
+  z-index: 3;
   display: flex;
   & > ${NavList} {
     display: flex;

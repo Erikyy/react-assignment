@@ -6,6 +6,7 @@ import { NavItem } from '../../common/components/navigation/Navbar';
 import { Button } from '../../common/components/common/Button';
 import DropDownMenu from '../../common/components/navigation/DropDownMenu';
 import DropDownItem from '../../common/components/navigation/DropDownItem';
+import { ChevronDown, ChevronUp } from '../../icons/Icons';
 
 const mapStateToProps = (state) => {
   const currencies = state.CurrencyReducer.currencies;
@@ -41,10 +42,28 @@ class CurrencySwitcher extends React.Component {
           onClick={() => this.setState((prevState) => ({ open: !prevState.open }))}
         >
           {getSymbolFromCurrency(this.props.activeCurrency)}
+
+          {this.state.open ? (
+            <ChevronUp
+              style={{
+                paddingLeft: '10px',
+                paddingBottom: '2px',
+              }}
+            />
+          ) : (
+            <ChevronDown
+              style={{
+                paddingLeft: '10px',
+                paddingBottom: '2px',
+              }}
+            />
+          )}
         </Button>
         <DropDownMenu
           style={{
             right: '27px',
+            backgroundColor: '#fff',
+            paddingRight: '5rem',
           }}
           open={this.state.open}
         >

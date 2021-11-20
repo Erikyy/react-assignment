@@ -13,12 +13,14 @@ import { fetchProducts } from '../features/products/ProductsSlice';
 import ProductComponent from '../features/products/ProductComponent';
 import { fetchCurrencies, setActiveCurrency } from '../features/currency-switcher/CurrencySlice';
 import CartPage from '../features/cart/cartpage/CartPageComponet';
+import Overlay from '../common/components/common/Overlay';
 
 const mapStateToProps = (state) => {
   return {
     categories: state.CategoriesReducer.categories,
     activeCategory: state.CategoriesReducer.activeCategory,
     activeCurrency: state.CurrencyReducer.activeCurrency,
+    cartMenuOpen: state.CartReducer.cartMenuOpen,
   };
 };
 
@@ -52,6 +54,7 @@ class App extends React.Component {
     return (
       <Router>
         <StoreHeader />
+        {this.props.cartMenuOpen ? <Overlay /> : ''}
         <Switch>
           {/* todo: maybe not hardcode this redirect */}
           <Route exact path="/" render={() => <Redirect to="/all" />} />

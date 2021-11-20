@@ -15,3 +15,8 @@
 button {
   font-size: medium;
 }
+
+h1 {
+  font-size: 42pt;
+  color: var(--color-dark-gray);
+}
