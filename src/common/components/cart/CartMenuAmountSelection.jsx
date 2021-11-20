@@ -16,6 +16,11 @@ const Button = styled.button`
   text-align: center;
   text-decoration: none;
   padding: 0 5px;
+
+  &:active {
+    background-color: var(--color-dark-gray);
+    color: #fff;
+  }
 `;
 
 export default class CartMenuAmountSelection extends React.Component {

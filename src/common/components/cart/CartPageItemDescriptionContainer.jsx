@@ -26,9 +26,9 @@ class CartPageItemDescriptionContainer extends React.Component {
         <p>{`${getSymbolFromCurrency(price.currency)}${price.amount}`}</p>
         {this.props.data.attributes.map((attribute, index) => {
           if (attribute.type === 'swatch') {
-            return <ChipGroup swatchGroup data={attribute.items} />;
+            return <ChipGroup swatchGroup data={attribute.items} key={String(index)} />;
           }
-          return <ChipGroup data={attribute.items} />;
+          return <ChipGroup data={attribute.items} key={String(index)} />;
         })}
       </Wrapper>
     );

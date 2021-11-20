@@ -10,6 +10,10 @@ const Container = styled.div`
   padding: 4rem;
   padding-left: 6rem;
   padding-right: 16rem;
+  @media (max-width: 900px) {
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -24,6 +28,9 @@ const CartList = styled.ul`
 const CartItem = styled.li`
   display: flex;
   justify-content: center;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 
 const mapStateToProps = (state) => {

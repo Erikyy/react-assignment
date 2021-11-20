@@ -22,7 +22,7 @@ export const CurrencySlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(fetchCurrencies.pending, (state, action) => {
+    builder.addCase(fetchCurrencies.pending, (state) => {
       return {
         ...state,
         status: 'loading',
@@ -35,7 +35,7 @@ export const CurrencySlice = createSlice({
         status: 'success',
       };
     });
-    builder.addCase(fetchCurrencies.rejected, (state, action) => {
+    builder.addCase(fetchCurrencies.rejected, (state) => {
       return {
         ...state,
         status: 'error',

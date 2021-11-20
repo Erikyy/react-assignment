@@ -1,9 +1,7 @@
 import React from 'react';
 import './StoreHeader.css';
 import Categories from '../../features/categories/Categories';
-import { Navbar, NavLogo, NavList, NavItem } from './navigation/Navbar';
-import { IconButton } from './common/Button';
-import CartIcon from '../../icons/Icons';
+import { Navbar, NavLogo, NavList } from './navigation/Navbar';
 import CurrencySwitcher from '../../features/currency-switcher/CurrencySwitcher';
 import CartMenu from '../../features/cart/cartmenu/CartMenu';
 

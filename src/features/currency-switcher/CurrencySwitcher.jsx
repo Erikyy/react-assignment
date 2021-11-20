@@ -61,9 +61,7 @@ class CurrencySwitcher extends React.Component {
         </Button>
         <DropDownMenu
           style={{
-            right: '27px',
             backgroundColor: '#fff',
-            paddingRight: '5rem',
           }}
           open={this.state.open}
         >

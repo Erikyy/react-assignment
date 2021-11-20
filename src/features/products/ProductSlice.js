@@ -13,7 +13,7 @@ export const ProductSlice = createSlice({
     status: '',
   },
   extraReducers(builder) {
-    builder.addCase(fetchProductById.pending, (state, action) => {
+    builder.addCase(fetchProductById.pending, (state) => {
       return {
         ...state,
         status: 'loading',
@@ -25,7 +25,7 @@ export const ProductSlice = createSlice({
         product: action.payload.data.product,
       };
     });
-    builder.addCase(fetchProductById.rejected, (state, action) => {
+    builder.addCase(fetchProductById.rejected, () => {
       return {
         status: 'error',
         product: {},

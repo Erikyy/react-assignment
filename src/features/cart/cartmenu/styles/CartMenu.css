@@ -44,3 +44,23 @@
   margin-right: 15px;
   padding: 12px;
 }
+
+.scrollable-menu {
+  overflow-y: scroll;
+  max-height: 500px;
+  scrollbar-color: var(--color-dark-gray);
+  scrollbar-width: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-dark-gray);
+  border-radius: 15px;
+  border: 2px solid var(--color-dark-gray);
+}

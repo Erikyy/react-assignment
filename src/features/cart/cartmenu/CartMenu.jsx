@@ -48,10 +48,7 @@ class CartMenu extends React.Component {
   incrementTotalPrice(tempTotalPrice, item) {
     let totalPrice = tempTotalPrice;
     for (let i = 0; i < item.quantity; i += 1) {
-      console.log(i);
-
       const price = item.product.prices.find((el) => el.currency === this.props.activeCurrency);
-      console.log(` Price: ${price.amount}`);
       totalPrice += price.amount;
     }
     return totalPrice;
@@ -79,7 +76,7 @@ class CartMenu extends React.Component {
 
         <DropDownMenu
           style={{
-            top: '2.7rem',
+            top: '4rem',
             right: '11rem',
             backgroundColor: '#fff',
           }}
@@ -98,30 +95,31 @@ class CartMenu extends React.Component {
               My Bag, {this.props.totalItemQuantity} items
             </p>
           </DropDownItem>
-          {this.props.products.map((item, index) => {
-            console.log(item);
-            tempTotalPrice = this.incrementTotalPrice(tempTotalPrice, item);
-            return (
-              <DropDownItem key={String(index)}>
-                <div className="cart-item">
-                  <CartMenuItemDescription
-                    data={item.product}
-                    activeCurrency={this.props.activeCurrency}
-                  />
-                  <CartMenuAmountSelection
-                    data={item.quantity}
-                    onAddClick={() => {
-                      this.props.addItemToCart({ product: item.product });
-                    }}
-                    onRemoveClick={() => {
-                      this.props.removeItemFromCart({ product: item.product });
-                    }}
-                  />
-                  <CartMenuItemImage imageSrc={item.product.gallery[0]} />
-                </div>
-              </DropDownItem>
-            );
-          })}
+          <div className="scrollable-menu">
+            {this.props.products.map((item, index) => {
+              tempTotalPrice = this.incrementTotalPrice(tempTotalPrice, item);
+              return (
+                <DropDownItem key={String(index)}>
+                  <div className="cart-item">
+                    <CartMenuItemDescription
+                      data={item.product}
+                      activeCurrency={this.props.activeCurrency}
+                    />
+                    <CartMenuAmountSelection
+                      data={item.quantity}
+                      onAddClick={() => {
+                        this.props.addItemToCart({ product: item.product });
+                      }}
+                      onRemoveClick={() => {
+                        this.props.removeItemFromCart({ product: item.product });
+                      }}
+                    />
+                    <CartMenuItemImage imageSrc={item.product.gallery[0]} />
+                  </div>
+                </DropDownItem>
+              );
+            })}
+          </div>
           <DropDownItem>
             <div className="cart-menu-total-amount-container">
               <p className="cart-menu-total-title">Total</p>
@@ -136,6 +134,7 @@ class CartMenu extends React.Component {
             <ButtonOutline
               className="button-outline"
               onClick={() => {
+                this.props.setCartMenuOpen(false);
                 this.redirectToCartPage();
               }}
             >

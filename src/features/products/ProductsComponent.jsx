@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ProductCard from '../../common/components/product/ProductCard';
 import './styles/ProductPage.css';
+import { addItemToCart } from '../cart/CartSlice';
 
 const mapStateToProps = (state) => {
   return {
@@ -11,6 +12,9 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = {
+  addItemToCart,
+};
 class ProductsComponent extends React.Component {
   render() {
     return (
@@ -22,6 +26,9 @@ class ProductsComponent extends React.Component {
           {this.props.products.map((product, index) => {
             return (
               <ProductCard
+                addToCartClick={() => {
+                  this.props.addItemToCart({ product });
+                }}
                 data={product}
                 activeCategory={this.props.activeCategory}
                 activeCurrency={this.props.activeCurrency}
@@ -34,4 +41,4 @@ class ProductsComponent extends React.Component {
     );
   }
 }
-export default connect(mapStateToProps)(ProductsComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsComponent);

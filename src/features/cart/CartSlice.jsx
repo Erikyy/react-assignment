@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export const CartSlice = createSlice({
   name: 'cart',
@@ -36,7 +36,6 @@ export const CartSlice = createSlice({
     removeItemFromCart: (state, action) => {
       const products = state.products.map((item) => {
         if (item.id === action.payload.product.id) {
-          console.log(item.quantity);
           return { ...item, quantity: item.quantity - 1 };
         }
         return item;

@@ -11,8 +11,8 @@ export default class ProductImages extends React.Component {
 
   render() {
     return (
-      <div className="product-page-image-container">
-        <ul className="product-image-slider">
+      <div className="slider-image-container">
+        <ul className="image-slider">
           {this.props.data.map((item, index) => {
             return (
               <li
@@ -22,17 +22,17 @@ export default class ProductImages extends React.Component {
                   });
                 }}
                 role="none"
-                className="product-image-slider-thumbnail-container"
+                className="thumbnail-container"
                 key={String(index)}
               >
-                <img className="product-image-slider-thumbnail" src={item} alt="thumbnail" />
+                <img className="thumbnail" src={item} alt="thumbnail" />
               </li>
             );
           })}
         </ul>
-        <div className="product-main-img-container">
+        <div className="main-img-container">
           <img
-            className="product-page-main-img"
+            className="main-img"
             src={this.props.data[this.state.selectedImageIndex]}
             alt="mainimg"
           />

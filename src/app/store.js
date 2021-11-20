@@ -40,7 +40,7 @@ const persistedReducer = persistReducer(
       createFilter('CategoriesReducer', ['activeCategory']),
       createFilter('CategoriesReducer', null, ['activeCategory']),
     ],
-    migrate: createMigrate(migrations, { debug: true }),
+    migrate: createMigrate(migrations, { debug: false }),
     stateReconciler: autoMergeLevel2,
   },
   rootReducer,
