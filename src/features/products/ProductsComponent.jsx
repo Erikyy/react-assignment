@@ -23,13 +23,13 @@ class ProductsComponent extends React.Component {
           <h1>{this.props.activeCategory}</h1>
         </div>
         <div className="product-container">
-          {this.props.products.map((product, index) => {
+          {this.props.products.map((item, index) => {
             return (
               <ProductCard
                 addToCartClick={() => {
-                  this.props.addItemToCart({ product });
+                  this.props.addItemToCart({ product: item });
                 }}
-                data={product}
+                data={item}
                 activeCategory={this.props.activeCategory}
                 activeCurrency={this.props.activeCurrency}
                 key={String(index)}

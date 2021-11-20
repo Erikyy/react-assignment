@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   width: 100px;
-  padding: 5px;
+  min-width: 100px;
 `;
 
 const Image = styled.img`

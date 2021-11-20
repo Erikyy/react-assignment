@@ -10,7 +10,7 @@ export default class Chip extends React.Component {
         }}
         className={`chip ${this.props.selected ? 'chip-selected' : ''} ${
           this.props.swatch ? 'chip-swatch' : ''
-        }`}
+        } ${this.props.mini ? 'chip-mini' : ''} `}
         onClick={() => this.props.onClick()}
         role="none"
       >

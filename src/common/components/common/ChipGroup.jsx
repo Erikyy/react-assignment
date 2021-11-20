@@ -24,6 +24,7 @@ export default class ChipGroup extends React.Component {
               selectedItemIndex: index,
             });
           }}
+          mini={this.props.mini}
           selected
           label={item.value}
           key={String(index)}
@@ -33,6 +34,7 @@ export default class ChipGroup extends React.Component {
     return (
       <Chip
         label={item.value}
+        mini={this.props.mini}
         onClick={() => {
           this.setState({
             selectedItemIndex: index,
@@ -52,6 +54,7 @@ export default class ChipGroup extends React.Component {
               selectedItemIndex: index,
             })
           }
+          mini={this.props.mini}
           selected
           swatch
           background={item.value}
@@ -66,6 +69,7 @@ export default class ChipGroup extends React.Component {
             selectedItemIndex: index,
           })
         }
+        mini={this.props.mini}
         swatch
         background={item.value}
         key={String(index)}

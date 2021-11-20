@@ -1,5 +1,6 @@
 .cart-item {
   display: flex;
+  width: 100%;
 }
 
 .cart-product-amount-selection {

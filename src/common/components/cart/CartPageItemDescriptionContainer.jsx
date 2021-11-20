@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import ChipGroup from '../common/ChipGroup';
+import { AttributeContainer, AttributeTitle } from '../product/ProductAttribute';
 
 const Wrapper = styled.div`
   float: left;
@@ -21,14 +22,31 @@ class CartPageItemDescriptionContainer extends React.Component {
     const price = this.props.data.prices.find((el) => el.currency === this.props.activeCurrency);
     return (
       <Wrapper>
-        <h2>{this.props.data.brand}</h2>
-        <h2>{this.props.data.name}</h2>
-        <p>{`${getSymbolFromCurrency(price.currency)}${price.amount}`}</p>
+        <h2 style={{}}>{this.props.data.brand}</h2>
+        <h2 style={{}}>{this.props.data.name}</h2>
+        <h3
+          style={{
+            fontWeight: 'bold',
+            fontSize: '18pt',
+            paddingTop: '1rem',
+            paddingBottom: '1rem',
+          }}
+        >{`${getSymbolFromCurrency(price.currency)}${price.amount}`}</h3>
         {this.props.data.attributes.map((attribute, index) => {
           if (attribute.type === 'swatch') {
-            return <ChipGroup swatchGroup data={attribute.items} key={String(index)} />;
+            return (
+              <AttributeContainer>
+                <AttributeTitle>{attribute.name}:</AttributeTitle>
+                <ChipGroup swatchGroup data={attribute.items} key={String(index)} />
+              </AttributeContainer>
+            );
           }
-          return <ChipGroup data={attribute.items} key={String(index)} />;
+          return (
+            <AttributeContainer>
+              <AttributeTitle>{attribute.name}:</AttributeTitle>
+              <ChipGroup data={attribute.items} key={String(index)} />
+            </AttributeContainer>
+          );
         })}
       </Wrapper>
     );

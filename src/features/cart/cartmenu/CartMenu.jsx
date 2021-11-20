@@ -79,6 +79,7 @@ class CartMenu extends React.Component {
             top: '4rem',
             right: '11rem',
             backgroundColor: '#fff',
+            width: '23rem',
           }}
           open={this.props.cartMenuOpen}
         >
@@ -99,7 +100,12 @@ class CartMenu extends React.Component {
             {this.props.products.map((item, index) => {
               tempTotalPrice = this.incrementTotalPrice(tempTotalPrice, item);
               return (
-                <DropDownItem key={String(index)}>
+                <DropDownItem
+                  key={String(index)}
+                  style={{
+                    padding: '10px',
+                  }}
+                >
                   <div className="cart-item">
                     <CartMenuItemDescription
                       data={item.product}
@@ -140,7 +146,7 @@ class CartMenu extends React.Component {
             >
               VIEW BAG
             </ButtonOutline>
-            <ButtonPrimary className="button-primary">CHECK OUT</ButtonPrimary>
+            <ButtonPrimary className="button-primary">CHECKOUT</ButtonPrimary>
           </DropDownItem>
         </DropDownMenu>
       </NavItem>

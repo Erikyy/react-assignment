@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import getSymbolFromCurrency from 'currency-symbol-map';
+import { AttributeContainer, AttributeTitle } from '../product/ProductAttribute';
+import ChipGroup from '../common/ChipGroup';
 
 const Wrapper = styled.div`
   padding: 5px;
@@ -22,6 +24,22 @@ export default class CartMenuItemDescription extends React.Component {
             fontWeight: 'bold',
           }}
         >{`${getSymbolFromCurrency(price.currency)}${price.amount}`}</p>
+        {this.props.data.attributes.map((attribute, index) => {
+          if (attribute.type === 'swatch') {
+            return (
+              <AttributeContainer>
+                <AttributeTitle>{attribute.name}:</AttributeTitle>
+                <ChipGroup mini swatchGroup data={attribute.items} key={String(index)} />
+              </AttributeContainer>
+            );
+          }
+          return (
+            <AttributeContainer>
+              <AttributeTitle>{attribute.name}:</AttributeTitle>
+              <ChipGroup mini data={attribute.items} key={String(index)} />
+            </AttributeContainer>
+          );
+        })}
       </Wrapper>
     );
   }

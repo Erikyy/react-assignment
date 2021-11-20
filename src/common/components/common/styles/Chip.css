@@ -5,9 +5,10 @@
   padding: 4px 6px 4px 6px;
   margin-right: 6px;
   margin-bottom: 6px;
-  min-width: 40px;
-  min-height: 20px;
+  min-width: 60px;
+  min-height: 35px;
   justify-content: center;
+  align-items: center;
   transition: all 200ms ease;
 }
 
@@ -21,9 +22,28 @@
 }
 
 .chip.chip-swatch {
-  border: 1px solid black;
+  border: 1px solid var(--color-lighter-gray);
 }
 
 .chip.chip-swatch.chip-selected {
-  border: 2px solid black;
+  border: 2px solid var(--color-dark-gray);
+}
+
+.chip.chip-mini {
+  min-width: 15px;
+  min-height: 15px;
+  border: 1px solid var(--color-lighter-gray);
+  color: var(--color-lighter-gray);
+}
+
+.chip.chip-mini.chip-swatch {
+}
+
+.chip.chip-mini.chip-swatch.chip-selected {
+}
+
+.chip.chip-mini.chip-selected {
+  border: 1px solid var(--color-dark-gray);
+  background: none;
+  color: var(--color-dark-gray);
 }
