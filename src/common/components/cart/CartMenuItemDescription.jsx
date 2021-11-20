@@ -16,7 +16,12 @@ export default class CartMenuItemDescription extends React.Component {
       <Wrapper>
         <p>{this.props.data.brand}</p>
         <p>{this.props.data.name}</p>
-        <p>{`${getSymbolFromCurrency(price.currency)}${price.amount}`}</p>
+        <p
+          style={{
+            paddingTop: '10px',
+            fontWeight: 'bold',
+          }}
+        >{`${getSymbolFromCurrency(price.currency)}${price.amount}`}</p>
       </Wrapper>
     );
   }

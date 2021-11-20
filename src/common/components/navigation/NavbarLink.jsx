@@ -9,12 +9,14 @@ class NavbarLink extends React.Component {
       <NavItem
         style={{
           borderBottom: isActive ? 'solid 2px var(--color-green)' : '',
+          padding: '1.5rem',
         }}
       >
         <NavLink
           style={{
             color: 'black',
             textDecoration: 'none',
+            textTransform: 'uppercase',
           }}
           className={isActive ? 'nav-link-active' : 'nav-link'}
           activeStyle={{ color: 'var(--color-green)' }}

@@ -16,7 +16,7 @@ export default class StoreHeader extends React.Component {
         <NavList
           right
           style={{
-            paddingRight: '3rem',
+            paddingRight: '6rem',
           }}
         >
           <CurrencySwitcher />

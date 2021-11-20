@@ -42,7 +42,7 @@ const mapDispatchToProps = {
 
 class CartMenu extends React.Component {
   redirectToCartPage() {
-    this.props.history.push('cart');
+    this.props.history.push('/cart');
   }
 
   incrementTotalPrice(tempTotalPrice, item) {
@@ -64,7 +64,7 @@ class CartMenu extends React.Component {
       badge = <Badge count={this.props.totalItemQuantity} />;
     }
     return (
-      <NavItem padding={0.2}>
+      <NavItem padding={0.1}>
         <IconButton
           style={{
             padding: '12px',
@@ -79,8 +79,8 @@ class CartMenu extends React.Component {
 
         <DropDownMenu
           style={{
-            top: '2.5rem',
-            right: '7rem',
+            top: '2.7rem',
+            right: '11rem',
             backgroundColor: '#fff',
           }}
           open={this.props.cartMenuOpen}

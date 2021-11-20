@@ -23,7 +23,7 @@ class Categories extends React.Component {
       <NavList
         left
         style={{
-          paddingLeft: '3rem',
+          paddingLeft: '5rem',
         }}
       >
         {this.props.categories.map((category, index) => (

@@ -16,13 +16,36 @@ export default class ProductCard extends React.Component {
         href={`/product/${this.props.activeCategory}/${this.props.data.id}`}
       >
         <div className="card">
-          <div className="card-img-container">
-            <img className="card-img" src={this.props.data.gallery[0]} alt="img" />
-          </div>
-          <p className="product-name">{`${this.props.data.brand} ${this.props.data.name}`}</p>
-          <p className="product-price">{`${getSymbolFromCurrency(price.currency)}${
-            price.amount
-          }`}</p>
+          {this.props.data.inStock ? (
+            <div className="card-main">
+              <div className="card-img-container">
+                <img className="card-img" src={this.props.data.gallery[0]} alt="img" />
+              </div>
+              <p className="product-name">{`${this.props.data.brand} ${this.props.data.name}`}</p>
+              <p className="product-price">{`${getSymbolFromCurrency(price.currency)}${
+                price.amount
+              }`}</p>
+            </div>
+          ) : (
+            <div className="card-main">
+              <div className="card-overlay">
+                <h2
+                  style={{
+                    color: 'var(--color-light-gray)',
+                  }}
+                >
+                  OUT OF STOCK
+                </h2>
+              </div>
+              <div className="card-img-container">
+                <img className="card-img" src={this.props.data.gallery[0]} alt="img" />
+              </div>
+              <p className="product-name">{`${this.props.data.brand} ${this.props.data.name}`}</p>
+              <p className="product-price">{`${getSymbolFromCurrency(price.currency)}${
+                price.amount
+              }`}</p>
+            </div>
+          )}
         </div>
       </a>
     );

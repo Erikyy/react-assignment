@@ -4,8 +4,8 @@ export const NavItem = styled.li`
   padding: ${(props) => {
     return props.padding ? `${props.padding}rem;` : '1rem';
   }};
-  padding-top: 1rem;
-  & > .nav-link-active {
+
+  s & > .nav-link-active {
     color: var(--color-green) !important;
   }
 `;
