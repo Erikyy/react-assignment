@@ -65,3 +65,19 @@
   border-radius: 15px;
   border: 2px solid var(--color-dark-gray);
 }
+
+.cart-dropdown {
+  background-color: white;
+  margin-top: 0;
+  padding-left: 0;
+  padding-top: 0;
+  top: 69px;
+  right: 12rem;
+  width: 23rem;
+}
+
+@media screen and (max-width: 950px) {
+  .cart-dropdown {
+    right: 0;
+  }
+}

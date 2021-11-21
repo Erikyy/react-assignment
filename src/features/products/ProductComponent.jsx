@@ -81,12 +81,14 @@ class ProductComponent extends React.Component {
                 width: '100%',
               }}
               onClick={() => {
-                this.props.addItemToCart({
-                  product: this.props.product,
-                });
+                if (this.props.product.inStock) {
+                  this.props.addItemToCart({
+                    product: this.props.product,
+                  });
+                }
               }}
             >
-              ADD TO CART
+              {`${this.props.product.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}`}
             </ButtonPrimary>
             {/* disabled eslint for line below due to using sanitizer to sanitize html from api */}
             {/* eslint-disable-next-line react/no-danger */}

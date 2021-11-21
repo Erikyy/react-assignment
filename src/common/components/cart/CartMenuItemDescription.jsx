@@ -27,16 +27,16 @@ export default class CartMenuItemDescription extends React.Component {
         {this.props.data.attributes.map((attribute, index) => {
           if (attribute.type === 'swatch') {
             return (
-              <AttributeContainer>
+              <AttributeContainer key={String(index)}>
                 <AttributeTitle>{attribute.name}:</AttributeTitle>
-                <ChipGroup mini swatchGroup data={attribute.items} key={String(index)} />
+                <ChipGroup mini swatchGroup data={attribute.items} />
               </AttributeContainer>
             );
           }
           return (
-            <AttributeContainer>
+            <AttributeContainer key={String(index)}>
               <AttributeTitle>{attribute.name}:</AttributeTitle>
-              <ChipGroup mini data={attribute.items} key={String(index)} />
+              <ChipGroup mini data={attribute.items} />
             </AttributeContainer>
           );
         })}

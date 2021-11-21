@@ -17,7 +17,11 @@ export default class DropDownMenu extends React.Component {
         classNames="dropdown"
         unmountOnExit
       >
-        <div className="dropdown" style={this.props.style} ref={this.dropdownRef}>
+        <div
+          className={`dropdown ${this.props.className}`}
+          style={this.props.style}
+          ref={this.dropdownRef}
+        >
           <div className="menu" ref={this.dropdownRef}>
             {this.props.children}
           </div>

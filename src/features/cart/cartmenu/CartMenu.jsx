@@ -61,7 +61,7 @@ class CartMenu extends React.Component {
       badge = <Badge count={this.props.totalItemQuantity} />;
     }
     return (
-      <NavItem padding={0.1}>
+      <NavItem padding={0.1} style={{}}>
         <IconButton
           style={{
             padding: '12px',
@@ -74,15 +74,7 @@ class CartMenu extends React.Component {
           <CartIcon />
         </IconButton>
 
-        <DropDownMenu
-          style={{
-            top: '4rem',
-            right: '11rem',
-            backgroundColor: '#fff',
-            width: '23rem',
-          }}
-          open={this.props.cartMenuOpen}
-        >
+        <DropDownMenu className="cart-dropdown" open={this.props.cartMenuOpen}>
           <DropDownItem
             style={{
               paddingBottom: '30px',
@@ -103,7 +95,8 @@ class CartMenu extends React.Component {
                 <DropDownItem
                   key={String(index)}
                   style={{
-                    padding: '10px',
+                    padding: '15px',
+                    paddingBottom: '25px',
                   }}
                 >
                   <div className="cart-item">

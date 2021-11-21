@@ -19,6 +19,15 @@ export const ButtonPrimary = styled.button`
   background-color: var(--color-green);
   color: white;
   padding: 1rem;
+  transition: background-color 0.2s ease-out;
+
+  &:hover {
+    background-color: black;
+  }
+
+  &:active {
+    background-color: var(--color-green-active);
+  }
 `;
 
 export const ButtonOutline = styled.button`
@@ -26,4 +35,14 @@ export const ButtonOutline = styled.button`
   border: 1px solid black;
   padding: 1rem;
   align-items: center;
+  color: var(--color-dark-gray);
+  transition: background-color 0.2s ease-out;
+
+  &:hover {
+    background-color: var(--color-lighter-gray);
+  }
+  &:active {
+    background-color: var(--color-dark-gray);
+    color: white;
+  }
 `;
