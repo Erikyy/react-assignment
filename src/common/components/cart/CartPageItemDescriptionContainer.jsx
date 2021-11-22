@@ -19,11 +19,13 @@ const mapDispatchToProps = {};
 
 class CartPageItemDescriptionContainer extends React.Component {
   render() {
-    const price = this.props.data.prices.find((el) => el.currency === this.props.activeCurrency);
+    const price = this.props.data.data.prices.find(
+      (el) => el.currency === this.props.activeCurrency,
+    );
     return (
       <Wrapper>
-        <h2 style={{}}>{this.props.data.brand}</h2>
-        <h2 style={{}}>{this.props.data.name}</h2>
+        <h2 style={{}}>{this.props.data.data.brand}</h2>
+        <h2 style={{}}>{this.props.data.data.name}</h2>
         <h3
           style={{
             fontWeight: 'bold',
@@ -32,19 +34,33 @@ class CartPageItemDescriptionContainer extends React.Component {
             paddingBottom: '1rem',
           }}
         >{`${getSymbolFromCurrency(price.currency)}${price.amount}`}</h3>
-        {this.props.data.attributes.map((attribute, index) => {
+        {this.props.data.data.attributes.map((attribute, index) => {
+          const attributeData = this.props.data.attributeData[index];
           if (attribute.type === 'swatch') {
             return (
-              <AttributeContainer>
+              <AttributeContainer key={String(index)}>
                 <AttributeTitle>{attribute.name}:</AttributeTitle>
-                <ChipGroup swatchGroup data={attribute.items} key={String(index)} />
+                <ChipGroup
+                  swatchGroup
+                  data={attribute.items}
+                  selectedIndex={attributeData.selectedIndex}
+                  onSelectChip={(idx) => {
+                    this.props.onChipSelected(attribute.name, idx);
+                  }}
+                />
               </AttributeContainer>
             );
           }
           return (
-            <AttributeContainer>
+            <AttributeContainer key={String(index)}>
               <AttributeTitle>{attribute.name}:</AttributeTitle>
-              <ChipGroup data={attribute.items} key={String(index)} />
+              <ChipGroup
+                data={attribute.items}
+                selectedIndex={attributeData.selectedIndex}
+                onSelectChip={(idx) => {
+                  this.props.onChipSelected(attribute.name, idx);
+                }}
+              />
             </AttributeContainer>
           );
         })}

@@ -10,20 +10,35 @@ import './styles/ChipGroup.css';
 export default class ChipGroup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedItemIndex: 0,
-    };
+    if (this.props.selectedIndex) {
+      this.state = {
+        selectedItemIndex: this.props.selectedIndex,
+      };
+    } else {
+      this.state = {
+        selectedItemIndex: 0,
+      };
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.defaultSelectChip) {
+      this.props.defaultSelectChip(this.state.selectedItemIndex);
+    }
+  }
+
+  selectChip(index) {
+    this.setState({
+      selectedItemIndex: index,
+    });
+    this.props.onSelectChip(index);
   }
 
   renderChip(index, item) {
     if (index === this.state.selectedItemIndex) {
       return (
         <Chip
-          onClick={() => {
-            this.setState({
-              selectedItemIndex: index,
-            });
-          }}
+          onClick={() => this.selectChip(index)}
           mini={this.props.mini}
           selected
           label={item.value}
@@ -35,11 +50,7 @@ export default class ChipGroup extends React.Component {
       <Chip
         label={item.value}
         mini={this.props.mini}
-        onClick={() => {
-          this.setState({
-            selectedItemIndex: index,
-          });
-        }}
+        onClick={() => this.selectChip(index)}
         key={String(index)}
       />
     );
@@ -49,11 +60,7 @@ export default class ChipGroup extends React.Component {
     if (index === this.state.selectedItemIndex) {
       return (
         <Chip
-          onClick={() =>
-            this.setState({
-              selectedItemIndex: index,
-            })
-          }
+          onClick={() => this.selectChip(index)}
           mini={this.props.mini}
           selected
           swatch
@@ -64,11 +71,7 @@ export default class ChipGroup extends React.Component {
     }
     return (
       <Chip
-        onClick={() =>
-          this.setState({
-            selectedItemIndex: index,
-          })
-        }
+        onClick={() => this.selectChip(index)}
         mini={this.props.mini}
         swatch
         background={item.value}

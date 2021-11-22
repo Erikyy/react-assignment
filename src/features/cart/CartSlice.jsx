@@ -1,22 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 export const CartSlice = createSlice({
   name: 'cart',
   initialState: {
     totalItemQuantity: 0,
     products: [],
-    totalAmount: 0,
     cartMenuOpen: false,
   },
   reducers: {
     addItemToCart: (state, action) => {
       const products = state.products.map((item) => {
-        if (item.id === action.payload.product.id) {
+        if (item.id === action.payload.product.data.id) {
           return { ...item, quantity: item.quantity + 1 };
         }
         return item;
       });
-      if (state.products.find((item) => item.id === action.payload.product.id)) {
+      if (state.products.find((item) => item.id === action.payload.product.data.id)) {
         return {
           ...state,
           products: [...products],
@@ -28,23 +27,25 @@ export const CartSlice = createSlice({
         ...state,
         products: [
           ...state.products,
-          { id: action.payload.product.id, product: action.payload.product, quantity: 1 },
+          { id: action.payload.product.data.id, product: action.payload.product, quantity: 1 },
         ],
         totalItemQuantity: state.totalItemQuantity + 1,
       };
     },
     removeItemFromCart: (state, action) => {
       const products = state.products.map((item) => {
-        if (item.id === action.payload.product.id) {
+        if (item.id === action.payload.product.data.id) {
           return { ...item, quantity: item.quantity - 1 };
         }
         return item;
       });
-      if (state.products.find((item) => item.id === action.payload.product.id)) {
+      if (state.products.find((item) => item.id === action.payload.product.data.id)) {
         if (state.products.find((item) => item.quantity === 1)) {
           return {
             ...state,
-            products: state.products.filter((product) => product.id !== action.payload.product.id),
+            products: state.products.filter(
+              (product) => product.id !== action.payload.product.data.id,
+            ),
             totalItemQuantity: state.totalItemQuantity - 1,
           };
         }
@@ -59,32 +60,41 @@ export const CartSlice = createSlice({
         ...state,
       };
     },
-    addTotalAmount: (state, action) => {
-      return {
-        ...state,
-        totalAmount: state.totalAmount + action.payload,
-      };
-    },
-    subtractTotalAmount: (state, action) => {
-      return {
-        ...state,
-        totalAmount: state.totalAmount - action.payload,
-      };
-    },
+
     setCartMenuOpen: (state, action) => {
       return {
         ...state,
         cartMenuOpen: action.payload,
       };
     },
+
+    setNewAttributeSelectedIndex: (state, action) => {
+      const newProducts = state.products.map((item) => {
+        const newAttributeData = item.product.attributeData.map((attrItem) => {
+          if (attrItem.name === action.payload.name) {
+            return {
+              name: attrItem.name,
+              selectedIndex: action.payload.idx,
+            };
+          }
+          return current(attrItem);
+        });
+        return {
+          ...item,
+          product: {
+            ...item.product,
+            attributeData: newAttributeData,
+          },
+        };
+      });
+      return {
+        ...state,
+        products: newProducts,
+      };
+    },
   },
 });
 
-export const {
-  addItemToCart,
-  removeItemFromCart,
-  addTotalAmount,
-  subtractTotalAmount,
-  setCartMenuOpen,
-} = CartSlice.actions;
+export const { addItemToCart, removeItemFromCart, setCartMenuOpen, setNewAttributeSelectedIndex } =
+  CartSlice.actions;
 export const CartReducer = CartSlice.reducer;

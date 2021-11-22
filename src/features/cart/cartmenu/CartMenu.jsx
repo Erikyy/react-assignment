@@ -17,16 +17,14 @@ import CartMenuItemImage from '../../../common/components/cart/CartMenuItemImage
 import {
   addItemToCart,
   removeItemFromCart,
-  addTotalAmount,
-  subtractTotalAmount,
   setCartMenuOpen,
+  setNewAttributeSelectedIndex,
 } from '../CartSlice';
 
 const mapStateToProps = (state) => {
   return {
     totalItemQuantity: state.CartReducer.totalItemQuantity,
     products: state.CartReducer.products,
-    totalAmount: state.CartReducer.totalAmount,
     cartMenuOpen: state.CartReducer.cartMenuOpen,
     activeCurrency: state.CurrencyReducer.activeCurrency,
   };
@@ -35,9 +33,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   addItemToCart,
   removeItemFromCart,
-  addTotalAmount,
-  subtractTotalAmount,
   setCartMenuOpen,
+  setNewAttributeSelectedIndex,
 };
 
 class CartMenu extends React.Component {
@@ -48,7 +45,9 @@ class CartMenu extends React.Component {
   incrementTotalPrice(tempTotalPrice, item) {
     let totalPrice = tempTotalPrice;
     for (let i = 0; i < item.quantity; i += 1) {
-      const price = item.product.prices.find((el) => el.currency === this.props.activeCurrency);
+      const price = item.product.data.prices.find(
+        (el) => el.currency === this.props.activeCurrency,
+      );
       totalPrice += price.amount;
     }
     return totalPrice;
@@ -61,7 +60,7 @@ class CartMenu extends React.Component {
       badge = <Badge count={this.props.totalItemQuantity} />;
     }
     return (
-      <NavItem padding={0.1} style={{}}>
+      <NavItem padding={0.1}>
         <IconButton
           style={{
             padding: '12px',
@@ -103,6 +102,9 @@ class CartMenu extends React.Component {
                     <CartMenuItemDescription
                       data={item.product}
                       activeCurrency={this.props.activeCurrency}
+                      onChipSelected={(name, idx) => {
+                        this.props.setNewAttributeSelectedIndex({ name, idx });
+                      }}
                     />
                     <CartMenuAmountSelection
                       data={item.quantity}
@@ -113,7 +115,7 @@ class CartMenu extends React.Component {
                         this.props.removeItemFromCart({ product: item.product });
                       }}
                     />
-                    <CartMenuItemImage imageSrc={item.product.gallery[0]} />
+                    <CartMenuItemImage imageSrc={item.product.data.gallery[0]} />
                   </div>
                 </DropDownItem>
               );

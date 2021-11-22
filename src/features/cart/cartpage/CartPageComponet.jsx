@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import CartPageItemDescriptionContainer from '../../../common/components/cart/CartPageItemDescriptionContainer';
 import CartPageItemImageContainer from '../../../common/components/cart/CartPageItemImageContainer';
 import CartMenuAmountSelection from '../../../common/components/cart/CartMenuAmountSelection';
-import { addItemToCart, removeItemFromCart } from '../CartSlice';
+import { addItemToCart, removeItemFromCart, setNewAttributeSelectedIndex } from '../CartSlice';
 
 const Container = styled.div`
   padding: 4rem;
@@ -45,6 +45,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   addItemToCart,
   removeItemFromCart,
+  setNewAttributeSelectedIndex,
 };
 
 class CartPage extends React.Component {
@@ -58,7 +59,12 @@ class CartPage extends React.Component {
           {this.props.products.map((item, index) => {
             return (
               <CartItem key={String(index)}>
-                <CartPageItemDescriptionContainer data={item.product} />
+                <CartPageItemDescriptionContainer
+                  data={item.product}
+                  onChipSelected={(name, idx) => {
+                    this.props.setNewAttributeSelectedIndex({ name, idx });
+                  }}
+                />
                 <CartMenuAmountSelection
                   large
                   style={{ marginLeft: 'auto' }}
@@ -70,7 +76,7 @@ class CartPage extends React.Component {
                     this.props.removeItemFromCart({ product: item.product });
                   }}
                 />
-                <CartPageItemImageContainer data={item.product.gallery} />
+                <CartPageItemImageContainer data={item.product.data.gallery} />
               </CartItem>
             );
           })}

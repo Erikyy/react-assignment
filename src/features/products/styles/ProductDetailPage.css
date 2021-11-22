@@ -5,9 +5,22 @@
   padding-right: 15rem;
   margin: 0 auto;
 }
+.product-price-title {
+  padding-top: 1rem;
+}
+
+.product-price {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
 
 .product-description-container {
   padding-left: 7rem;
+}
+
+.product-description {
+  padding-top: 2rem;
+  font-family: 'Roboto';
 }
 
 @media screen and (max-width: 950px) {

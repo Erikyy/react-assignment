@@ -22,11 +22,12 @@
 }
 
 .chip.chip-swatch {
-  border: 1px solid var(--color-lighter-gray);
+  border: 2px solid var(--color-lighter-gray);
+  outline: 1px solid var(--color-lighter-gray);
 }
 
 .chip.chip-swatch.chip-selected {
-  border: 2px solid var(--color-dark-gray);
+  outline: 1px solid var(--color-dark-gray);
 }
 
 .chip.chip-mini {
@@ -37,9 +38,12 @@
 }
 
 .chip.chip-mini.chip-swatch {
+  outline: 1px solid var(--color-lighter-gray);
 }
 
 .chip.chip-mini.chip-swatch.chip-selected {
+  outline: 1px solid var(--color-dark-gray);
+  border: 1px solid var(--color-lighter-gray);
 }
 
 .chip.chip-mini.chip-selected {

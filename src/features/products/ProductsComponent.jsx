@@ -16,6 +16,18 @@ const mapDispatchToProps = {
   addItemToCart,
 };
 class ProductsComponent extends React.Component {
+  mapAttributeDataForProduct = (attributes) => {
+    const attributeData = [];
+    attributes.map((item) => {
+      attributeData.push({
+        name: item.name,
+        selectedIndex: 0,
+      });
+      return item;
+    });
+    return attributeData;
+  };
+
   render() {
     return (
       <div className="page-container">
@@ -27,7 +39,12 @@ class ProductsComponent extends React.Component {
             return (
               <ProductCard
                 addToCartClick={() => {
-                  this.props.addItemToCart({ product: item });
+                  this.props.addItemToCart({
+                    product: {
+                      data: item,
+                      attributeData: this.mapAttributeDataForProduct(item.attributes),
+                    },
+                  });
                 }}
                 data={item}
                 activeCategory={this.props.activeCategory}

@@ -28,6 +28,13 @@ const mapDispatchToProps = {
 };
 
 class ProductComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedAttributes: [],
+    };
+  }
+
   componentDidMount() {
     // fetch product by id
     this.props.fetchProductById(this.props.match.params.id);
@@ -40,6 +47,30 @@ class ProductComponent extends React.Component {
       });
     }
     return 0;
+  }
+
+  setSelectedChip(attrName, attrindex) {
+    if (this.state.selectedAttributes.find((el) => el.name === attrName)) {
+      const newSelectedAttributes = this.state.selectedAttributes.map((el) =>
+        el.name === attrName
+          ? {
+              ...el,
+              selectedIndex: attrindex,
+            }
+          : el,
+      );
+      this.setState(() => ({ selectedAttributes: newSelectedAttributes }));
+    } else {
+      this.setState((prevState) => ({
+        selectedAttributes: [
+          ...prevState.selectedAttributes,
+          {
+            name: attrName,
+            selectedIndex: attrindex,
+          },
+        ],
+      }));
+    }
   }
 
   render() {
@@ -62,20 +93,38 @@ class ProductComponent extends React.Component {
                 return (
                   <AttributeContainer key={String(index)}>
                     <AttributeTitle>{attribute.name}:</AttributeTitle>
-                    <ChipGroup swatchGroup data={attribute.items} />
+                    <ChipGroup
+                      defaultSelectChip={(idx) => {
+                        this.setSelectedChip(attribute.name, idx);
+                      }}
+                      swatchGroup
+                      data={attribute.items}
+                      onSelectChip={(idx) => {
+                        this.setSelectedChip(attribute.name, idx);
+                      }}
+                    />
                   </AttributeContainer>
                 );
               }
               return (
                 <AttributeContainer key={String(index)}>
                   <AttributeTitle>{attribute.name}:</AttributeTitle>
-                  <ChipGroup data={attribute.items} />
+                  <ChipGroup
+                    defaultSelectChip={(idx) => {
+                      this.setSelectedChip(attribute.name, idx);
+                    }}
+                    data={attribute.items}
+                    onSelectChip={(idx) => {
+                      this.setSelectedChip(attribute.name, idx);
+                    }}
+                  />
                 </AttributeContainer>
               );
             })}
-            <p className="">{`${getSymbolFromCurrency(this.getProductPrice().currency)}${
-              this.getProductPrice().amount
-            }`}</p>
+            <p className="product-price-title">PRICE:</p>
+            <p className="product-price">{`${getSymbolFromCurrency(
+              this.getProductPrice().currency,
+            )}${this.getProductPrice().amount}`}</p>
             <ButtonPrimary
               style={{
                 width: '100%',
@@ -83,7 +132,10 @@ class ProductComponent extends React.Component {
               onClick={() => {
                 if (this.props.product.inStock) {
                   this.props.addItemToCart({
-                    product: this.props.product,
+                    product: {
+                      data: this.props.product,
+                      attributeData: this.state.selectedAttributes,
+                    },
                   });
                 }
               }}
@@ -91,8 +143,11 @@ class ProductComponent extends React.Component {
               {`${this.props.product.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}`}
             </ButtonPrimary>
             {/* disabled eslint for line below due to using sanitizer to sanitize html from api */}
-            {/* eslint-disable-next-line react/no-danger */}
-            <div dangerouslySetInnerHTML={{ __html: purify(this.props.product.description) }} />
+            <div
+              className="product-description"
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: purify(this.props.product.description) }}
+            />
           </div>
         </div>
       );

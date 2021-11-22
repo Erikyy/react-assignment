@@ -10,33 +10,49 @@ const Wrapper = styled.div`
 
 export default class CartMenuItemDescription extends React.Component {
   render() {
-    const price = this.props.data.prices.find((el) => {
+    const price = this.props.data.data.prices.find((el) => {
       return el.currency === this.props.activeCurrency;
     });
 
     return (
       <Wrapper>
-        <p>{this.props.data.brand}</p>
-        <p>{this.props.data.name}</p>
+        <p>{this.props.data.data.brand}</p>
+        <p>{this.props.data.data.name}</p>
         <p
           style={{
             paddingTop: '10px',
             fontWeight: 'bold',
           }}
         >{`${getSymbolFromCurrency(price.currency)}${price.amount}`}</p>
-        {this.props.data.attributes.map((attribute, index) => {
+        {this.props.data.data.attributes.map((attribute, index) => {
+          const attributeData = this.props.data.attributeData[index];
           if (attribute.type === 'swatch') {
             return (
               <AttributeContainer key={String(index)}>
                 <AttributeTitle>{attribute.name}:</AttributeTitle>
-                <ChipGroup mini swatchGroup data={attribute.items} />
+                <ChipGroup
+                  mini
+                  swatchGroup
+                  data={attribute.items}
+                  selectedIndex={attributeData.selectedIndex}
+                  onSelectChip={(idx) => {
+                    this.props.onChipSelected(attribute.name, idx);
+                  }}
+                />
               </AttributeContainer>
             );
           }
           return (
             <AttributeContainer key={String(index)}>
               <AttributeTitle>{attribute.name}:</AttributeTitle>
-              <ChipGroup mini data={attribute.items} />
+              <ChipGroup
+                mini
+                data={attribute.items}
+                selectedIndex={attributeData.selectedIndex}
+                onSelectChip={(idx) => {
+                  this.props.onChipSelected(attribute.name, idx);
+                }}
+              />
             </AttributeContainer>
           );
         })}

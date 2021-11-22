@@ -22,7 +22,7 @@ export const ButtonPrimary = styled.button`
   transition: background-color 0.2s ease-out;
 
   &:hover {
-    background-color: black;
+    background-color: var(--color-darker-green);
   }
 
   &:active {
@@ -39,7 +39,7 @@ export const ButtonOutline = styled.button`
   transition: background-color 0.2s ease-out;
 
   &:hover {
-    background-color: var(--color-lighter-gray);
+    background-color: var(--color-very-light-gray);
   }
   &:active {
     background-color: var(--color-dark-gray);
