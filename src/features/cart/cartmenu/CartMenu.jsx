@@ -10,16 +10,18 @@ import Badge from '../../../common/components/common/Badge';
 import DropDownMenu from '../../../common/components/navigation/DropDownMenu';
 import DropDownItem from '../../../common/components/navigation/DropDownItem';
 
-import './styles/CartMenu.css';
 import CartMenuItemDescription from '../../../common/components/cart/CartMenuItemDescription';
 import CartMenuAmountSelection from '../../../common/components/cart/CartMenuAmountSelection';
 import CartMenuItemImage from '../../../common/components/cart/CartMenuItemImage';
+
 import {
   addItemToCart,
   removeItemFromCart,
   setCartMenuOpen,
   setNewAttributeSelectedIndex,
 } from '../CartSlice';
+
+import './styles/CartMenu.css';
 
 const mapStateToProps = (state) => {
   return {
@@ -64,6 +66,7 @@ class CartMenu extends React.Component {
         <IconButton
           style={{
             padding: '12px',
+            scale: '1.3',
           }}
           onClick={() => {
             this.props.setCartMenuOpen(!this.props.cartMenuOpen);
@@ -87,7 +90,7 @@ class CartMenu extends React.Component {
               My Bag, {this.props.totalItemQuantity} items
             </p>
           </DropDownItem>
-          <div className="scrollable-menu">
+          <div className="cart-menu-scrollable-menu">
             {this.props.products.map((item, index) => {
               tempTotalPrice = this.incrementTotalPrice(tempTotalPrice, item);
               return (
@@ -103,7 +106,7 @@ class CartMenu extends React.Component {
                       data={item.product}
                       activeCurrency={this.props.activeCurrency}
                       onChipSelected={(name, idx) => {
-                        this.props.setNewAttributeSelectedIndex({ name, idx });
+                        this.props.setNewAttributeSelectedIndex({ name, idx, id: item.id });
                       }}
                     />
                     <CartMenuAmountSelection

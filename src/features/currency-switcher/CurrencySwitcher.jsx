@@ -38,23 +38,22 @@ class CurrencySwitcher extends React.Component {
         <Button
           style={{
             padding: '12px',
+            display: 'flex',
           }}
           onClick={() => this.setState((prevState) => ({ open: !prevState.open }))}
         >
-          {getSymbolFromCurrency(this.props.activeCurrency)}
+          <p style={{ fontSize: '14pt' }}>{getSymbolFromCurrency(this.props.activeCurrency)}</p>
 
           {this.state.open ? (
             <ChevronUp
               style={{
                 paddingLeft: '10px',
-                paddingBottom: '2px',
               }}
             />
           ) : (
             <ChevronDown
               style={{
                 paddingLeft: '10px',
-                paddingBottom: '2px',
               }}
             />
           )}
@@ -69,9 +68,16 @@ class CurrencySwitcher extends React.Component {
             ? this.props.currencies.map((currency, index) => {
                 return (
                   <DropDownItem key={String(index)}>
-                    <Button onClick={() => this.props.setActiveCurrency(currency)}>
-                      {getSymbolFromCurrency(currency)}&nbsp;
-                      {currency}
+                    <Button
+                      style={{ display: 'flex' }}
+                      onClick={() => {
+                        this.props.setActiveCurrency(currency);
+                        this.setState({ open: false });
+                      }}
+                    >
+                      <p style={{ fontSize: '14pt' }}>{`${getSymbolFromCurrency(
+                        currency,
+                      )} ${currency}`}</p>
                     </Button>
                   </DropDownItem>
                 );

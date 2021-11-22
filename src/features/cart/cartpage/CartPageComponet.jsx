@@ -18,18 +18,21 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
+  font-size: 32pt;
   font-weight: bolder;
 `;
 
 const CartList = styled.ul`
   list-style: none;
-  padding-top: 5rem;
+  padding-top: 3rem;
 `;
 
 const CartItem = styled.li`
   display: flex;
   justify-content: center;
-  padding-top: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-top: 1px solid var(--color-very-light-gray);
   @media (max-width: 900px) {
     flex-direction: column;
   }
@@ -39,6 +42,7 @@ const mapStateToProps = (state) => {
   return {
     products: state.CartReducer.products,
     totalItemQuantity: state.CartReducer.totalItemQuantity,
+    activeCurrency: state.CurrencyReducer.activeCurrency,
   };
 };
 
@@ -62,12 +66,13 @@ class CartPage extends React.Component {
                 <CartPageItemDescriptionContainer
                   data={item.product}
                   onChipSelected={(name, idx) => {
-                    this.props.setNewAttributeSelectedIndex({ name, idx });
+                    this.props.setNewAttributeSelectedIndex({ name, idx, id: item.id });
                   }}
+                  activeCurrency={this.props.activeCurrency}
                 />
                 <CartMenuAmountSelection
                   large
-                  style={{ marginLeft: 'auto' }}
+                  style={{ marginLeft: 'auto', fontSize: '24pt' }}
                   data={item.quantity}
                   onAddClick={() => {
                     this.props.addItemToCart({ product: item.product });

@@ -5,7 +5,7 @@ export const NavItem = styled.li`
     return props.padding ? `${props.padding}rem;` : '1rem';
   }};
 
-  s & > .nav-link-active {
+  & > .nav-link-active {
     color: var(--color-green) !important;
   }
 `;

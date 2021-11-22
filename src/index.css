@@ -2,10 +2,10 @@
   --color-green: #5ece7b;
   --color-dark-gray: #1d1f22;
   --color-light-gray: #8d8f9a;
-  --color-green-active: #79f099;
+  --color-light-green: #79f099;
   --color-darker-green: #50b16a;
   --color-lighter-gray: #a6a6a6;
-  --color-very-light-gray: #ebebeb;
+  --color-very-light-gray: #e5e5e5;
 }
 
 * {

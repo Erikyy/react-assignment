@@ -22,10 +22,13 @@ const Button = styled.button`
   ${(props) => {
     return props.large
       ? `
-      padding: 15px;
+      padding: 25px;
 
       & > svg {
-        scale: 2;
+        
+        stroke-width: 0.5;
+        scale: 3;
+        
       }
     `
       : ``;
@@ -34,8 +37,9 @@ const Button = styled.button`
     background-color: var(--color-dark-gray);
   }
 
-  &: active > svg > path {
+  &:active > svg > path {
     fill: #fff;
+    stroke: #fff;
   }
 `;
 

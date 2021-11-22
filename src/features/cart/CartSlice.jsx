@@ -33,14 +33,12 @@ export const CartSlice = createSlice({
       };
     },
     removeItemFromCart: (state, action) => {
-      const products = state.products.map((item) => {
-        if (item.id === action.payload.product.data.id) {
-          return { ...item, quantity: item.quantity - 1 };
-        }
-        return item;
-      });
       if (state.products.find((item) => item.id === action.payload.product.data.id)) {
-        if (state.products.find((item) => item.quantity === 1)) {
+        if (
+          state.products.find(
+            (item) => item.quantity === 1 && item.id === action.payload.product.data.id,
+          )
+        ) {
           return {
             ...state,
             products: state.products.filter(
@@ -49,6 +47,12 @@ export const CartSlice = createSlice({
             totalItemQuantity: state.totalItemQuantity - 1,
           };
         }
+        const products = state.products.map((item) => {
+          if (item.id === action.payload.product.data.id) {
+            return { ...item, quantity: item.quantity - 1 };
+          }
+          return item;
+        });
         return {
           ...state,
           products: [...products],
@@ -71,7 +75,7 @@ export const CartSlice = createSlice({
     setNewAttributeSelectedIndex: (state, action) => {
       const newProducts = state.products.map((item) => {
         const newAttributeData = item.product.attributeData.map((attrItem) => {
-          if (attrItem.name === action.payload.name) {
+          if (attrItem.name === action.payload.name && item.id === action.payload.id) {
             return {
               name: attrItem.name,
               selectedIndex: action.payload.idx,

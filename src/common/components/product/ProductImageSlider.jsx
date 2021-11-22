@@ -1,7 +1,7 @@
 import React from 'react';
-import './styles/ProductImages.css';
+import './styles/ImageSlider.css';
 
-export default class ProductImages extends React.Component {
+export default class ProductImageSlider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,7 @@ export default class ProductImages extends React.Component {
   render() {
     return (
       <div className="slider-image-container">
-        <ul className="image-slider">
+        <ul className="slider-images-list">
           {this.props.data.map((item, index) => {
             return (
               <li
@@ -22,17 +22,23 @@ export default class ProductImages extends React.Component {
                   });
                 }}
                 role="none"
-                className="thumbnail-container"
+                className="slider-thumbnail-container"
                 key={String(index)}
               >
-                <img className="thumbnail" src={item} alt="thumbnail" />
+                <img
+                  className={`slider-thumbnail ${
+                    this.state.selectedImageIndex === index ? 'slider-thumbnail-active' : ''
+                  }`}
+                  src={item}
+                  alt="thumbnail"
+                />
               </li>
             );
           })}
         </ul>
-        <div className="main-img-container">
+        <div className="slider-main-img-container">
           <img
-            className="main-img"
+            className="slider-main-img"
             src={this.props.data[this.state.selectedImageIndex]}
             alt="mainimg"
           />

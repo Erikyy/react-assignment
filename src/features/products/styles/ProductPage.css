@@ -2,7 +2,7 @@
   padding: 2rem;
   padding-right: 6rem;
   padding-left: 6rem;
-  padding-top: 8rem;
+  padding-top: 10rem;
 }
 
 .category-name {
@@ -10,7 +10,7 @@
   text-transform: capitalize;
 }
 
-.product-container {
+.products-container {
   display: grid;
 
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

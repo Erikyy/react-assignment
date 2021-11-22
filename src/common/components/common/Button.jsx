@@ -26,7 +26,7 @@ export const ButtonPrimary = styled.button`
   }
 
   &:active {
-    background-color: var(--color-green-active);
+    background-color: var(--color-light-green);
   }
 `;
 

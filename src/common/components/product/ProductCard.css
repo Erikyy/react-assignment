@@ -17,11 +17,11 @@
   position: absolute;
 }
 
-.product-name {
+.product-card-name {
   padding-top: 15px;
 }
 
-.product-price {
+.product-card-price {
   padding-top: 15px;
   font-weight: bold;
 }
@@ -51,7 +51,7 @@
 }
 
 .card-add-to-cart:active {
-  background-color: var(--color-green-active);
+  background-color: var(--color-light-green);
 }
 
 .card-add-to-cart > svg > path {

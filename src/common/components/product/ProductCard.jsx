@@ -36,8 +36,8 @@ export default class ProductCard extends React.Component {
                   }}
                 />
               </button>
-              <p className="product-name">{`${this.props.data.brand} ${this.props.data.name}`}</p>
-              <p className="product-price">{`${getSymbolFromCurrency(price.currency)}${
+              <p className="product-card-name">{`${this.props.data.brand} ${this.props.data.name}`}</p>
+              <p className="product-card-price">{`${getSymbolFromCurrency(price.currency)}${
                 price.amount
               }`}</p>
             </div>
@@ -55,8 +55,8 @@ export default class ProductCard extends React.Component {
               <div className="card-img-container">
                 <img className="card-img" src={this.props.data.gallery[0]} alt="img" />
               </div>
-              <p className="product-name">{`${this.props.data.brand} ${this.props.data.name}`}</p>
-              <p className="product-price">{`${getSymbolFromCurrency(price.currency)}${
+              <p className="product-card-name">{`${this.props.data.brand} ${this.props.data.name}`}</p>
+              <p className="product-card-price">{`${getSymbolFromCurrency(price.currency)}${
                 price.amount
               }`}</p>
             </div>
