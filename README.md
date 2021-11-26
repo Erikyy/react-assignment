@@ -1,6 +1,22 @@
 # React-Exercise
 
-ScandiWeb Junior ReactJS exercise
+## ScandiWeb Junior ReactJS exercise
+
+### Setting up
+
+```
+npm install
+```
+
+### Configuring
+
+Copy contents of .env.example to .env file and configure provided environment variables
+
+### Running the project
+
+```
+npm start
+```
 
 routing
 list all items
