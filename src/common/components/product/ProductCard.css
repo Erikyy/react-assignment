@@ -1,5 +1,4 @@
 .card {
-  box-shadow: 0 2px 2px 3px rgba(0, 0, 40, 0.06), 0 6px 6px 10px rgba(0, 0, 40, 0.005);
   padding: 1rem;
   display: flex;
   width: auto;
@@ -41,24 +40,29 @@
   justify-content: center;
   align-items: center;
 }
-.card-add-to-cart {
+.card-add-to-cart-button {
   background: none;
   border: none;
   border-radius: 50%;
   padding: 9px 11px;
   background-color: var(--color-green);
   transition: background 100ms;
+  display: none;
 }
 
-.card-add-to-cart:active {
+.card-add-to-cart-button:active {
   background-color: var(--color-light-green);
 }
 
-.card-add-to-cart > svg > path {
+.card-add-to-cart-button > svg > path {
   fill: white;
 }
-.card-main > .card-add-to-cart {
+.card-main > .card-add-to-cart-button {
   position: absolute;
   bottom: 50px;
   right: 20px;
+}
+
+.card:hover .card-add-to-cart-button {
+  display: block;
 }

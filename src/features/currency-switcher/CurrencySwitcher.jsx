@@ -29,18 +29,34 @@ class CurrencySwitcher extends React.Component {
     this.state = {
       open: false,
     };
+    this.dropdownRef = React.createRef();
   }
 
   render() {
     return (
-      <NavItem padding={0.1}>
-        {/* todo: add chevron icon to currency switcher button */}
+      <NavItem
+        padding={0.1}
+        onBlur={(e) => {
+          console.log(e.relatedTarget);
+          console.log(this.dropdownRef);
+          console.log(!this.dropdownRef.current.contains(e.relatedTarget));
+          if (!this.dropdownRef.current.contains(e.relatedTarget)) {
+            this.setState((prevState) => ({ open: !prevState.open }));
+          } else {
+            console.log('element clicked on child element');
+          }
+        }}
+        ref={this.dropdownRef}
+      >
         <Button
           style={{
             padding: '12px',
             display: 'flex',
           }}
-          onClick={() => this.setState((prevState) => ({ open: !prevState.open }))}
+          onClick={() => {
+            console.log('click');
+            this.setState((prevState) => ({ open: !prevState.open }));
+          }}
         >
           <p style={{ fontSize: '14pt' }}>{getSymbolFromCurrency(this.props.activeCurrency)}</p>
 
@@ -72,7 +88,6 @@ class CurrencySwitcher extends React.Component {
                       style={{ display: 'flex' }}
                       onClick={() => {
                         this.props.setActiveCurrency(currency);
-                        this.setState({ open: false });
                       }}
                     >
                       <p style={{ fontSize: '14pt' }}>{`${getSymbolFromCurrency(

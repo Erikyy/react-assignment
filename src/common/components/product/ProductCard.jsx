@@ -28,7 +28,7 @@ export default class ProductCard extends React.Component {
                   this.props.addToCartClick();
                 }}
                 type="button"
-                className="card-add-to-cart"
+                className="card-add-to-cart-button"
               >
                 <CartIcon
                   style={{
