@@ -50,7 +50,6 @@ class CartMenu extends React.Component {
     this.setState(
       (prevState) => ({ open: !prevState.open }),
       () => {
-        console.log(`Menu open: ${this.state.open}`);
         this.props.onCartButtonClicked(this.state.open);
       },
     );
@@ -140,10 +139,10 @@ class CartMenu extends React.Component {
                     <CartMenuAmountSelection
                       data={item.quantity}
                       onAddClick={() => {
-                        this.props.addItemToCart({ product: item.product });
+                        this.props.addItemToCart({ product: item.product, id: item.id });
                       }}
                       onRemoveClick={() => {
-                        this.props.removeItemFromCart({ product: item.product });
+                        this.props.removeItemFromCart({ product: item.product, id: item.id });
                       }}
                     />
                     <CartMenuItemImage imageSrc={item.product.data.gallery[0]} />

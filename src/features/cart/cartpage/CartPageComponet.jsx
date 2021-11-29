@@ -75,10 +75,10 @@ class CartPage extends React.Component {
                   style={{ marginLeft: 'auto', fontSize: '24pt' }}
                   data={item.quantity}
                   onAddClick={() => {
-                    this.props.addItemToCart({ product: item.product });
+                    this.props.addItemToCart({ product: item.product, id: item.id });
                   }}
                   onRemoveClick={() => {
-                    this.props.removeItemFromCart({ product: item.product });
+                    this.props.removeItemFromCart({ product: item.product, id: item.id });
                   }}
                 />
                 <CartPageItemImageContainer data={item.product.data.gallery} />
