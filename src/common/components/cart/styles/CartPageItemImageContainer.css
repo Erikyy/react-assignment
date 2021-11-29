@@ -1,0 +1,17 @@
+.image-gallery-button-container {
+  position: absolute;
+  display: flex;
+  top: 45%;
+  width: 97%;
+  justify-content: space-between;
+}
+
+.image-gallery-button {
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  width: 40px;
+  height: 40px;
+}
+.image-gallery-button > svg {
+  scale: 1.5;
+}
