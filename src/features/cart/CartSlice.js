@@ -1,16 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 
-// Compares arrays and returns true when all elements are same
-const compareArrays = (arr1, arr2) => {
-  return (
-    arr1.length === arr2.length &&
-    arr1.every(
-      (value, index) =>
-        value.name === arr2[index].name && value.selectedIndex === arr2[index].selectedIndex,
-    )
-  );
-};
-
 const IdBuilder = () => {
   let finalId = '';
 
