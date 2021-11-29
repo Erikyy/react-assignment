@@ -6,6 +6,7 @@
   --color-darker-green: #50b16a;
   --color-lighter-gray: #a6a6a6;
   --color-very-light-gray: #e5e5e5;
+  --color-red: rgba(255, 0, 0, 0.7);
 }
 
 * {
