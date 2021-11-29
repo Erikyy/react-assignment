@@ -14,14 +14,12 @@ import ProductDetailComponent from '../features/products/ProductDetailComponent'
 import { fetchCurrencies, setActiveCurrency } from '../features/currency-switcher/CurrencySlice';
 import CartPage from '../features/cart/cartpage/CartPageComponet';
 import Overlay from '../common/components/common/Overlay';
-import { setCartMenuOpen } from '../features/cart/CartSlice';
 
 const mapStateToProps = (state) => {
   return {
     categories: state.CategoriesReducer.categories,
     activeCategory: state.CategoriesReducer.activeCategory,
     activeCurrency: state.CurrencyReducer.activeCurrency,
-    cartMenuOpen: state.CartReducer.cartMenuOpen,
   };
 };
 
@@ -32,10 +30,16 @@ const mapDispatchToProps = {
   setActiveCategory,
   fetchCurrencies,
   setActiveCurrency,
-  setCartMenuOpen,
 };
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showOverlay: false,
+    };
+  }
+
   componentDidMount() {
     this.props.fetchCurrencies();
     this.props.pushCategory({ name: 'all' });
@@ -55,16 +59,12 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <StoreHeader />
-        {this.props.cartMenuOpen ? (
-          <Overlay
-            onClick={() => {
-              this.props.setCartMenuOpen(false);
-            }}
-          />
-        ) : (
-          ''
-        )}
+        <StoreHeader
+          cartMenuOpen={(open) => {
+            this.setState({ showOverlay: open });
+          }}
+        />
+        {this.state.showOverlay ? <Overlay /> : ''}
         <Switch>
           {/* todo: maybe not hardcode this redirect */}
           <Route exact path="/" render={() => <Redirect to="/all" />} />

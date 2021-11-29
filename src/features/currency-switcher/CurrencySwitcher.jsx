@@ -32,18 +32,22 @@ class CurrencySwitcher extends React.Component {
     this.dropdownRef = React.createRef();
   }
 
+  componentDidMount() {
+    this.props.setCurrencySwitcherCLoseFunc(this.closeMenu);
+  }
+
+  closeMenu() {
+    this.setState({ open: false });
+  }
+
   render() {
     return (
       <NavItem
         padding={0.1}
         onBlur={(e) => {
-          console.log(e.relatedTarget);
-          console.log(this.dropdownRef);
-          console.log(!this.dropdownRef.current.contains(e.relatedTarget));
-          if (!this.dropdownRef.current.contains(e.relatedTarget)) {
+          if (!this.dropdownRef.current.contains(e.relatedTarget) && this.state.open) {
             this.setState((prevState) => ({ open: !prevState.open }));
-          } else {
-            console.log('element clicked on child element');
+            this.props.onCurrencySwitcherButtonClicked(this.state.open);
           }
         }}
         ref={this.dropdownRef}
@@ -54,8 +58,12 @@ class CurrencySwitcher extends React.Component {
             display: 'flex',
           }}
           onClick={() => {
-            console.log('click');
-            this.setState((prevState) => ({ open: !prevState.open }));
+            this.setState(
+              (prevState) => ({ open: !prevState.open }),
+              () => {
+                this.props.onCurrencySwitcherButtonClicked(this.state.open);
+              },
+            );
           }}
         >
           <p style={{ fontSize: '14pt' }}>{getSymbolFromCurrency(this.props.activeCurrency)}</p>

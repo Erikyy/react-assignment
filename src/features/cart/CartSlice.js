@@ -65,13 +65,6 @@ export const CartSlice = createSlice({
       };
     },
 
-    setCartMenuOpen: (state, action) => {
-      return {
-        ...state,
-        cartMenuOpen: action.payload,
-      };
-    },
-
     setNewAttributeSelectedIndex: (state, action) => {
       const newProducts = state.products.map((item) => {
         const newAttributeData = item.product.attributeData.map((attrItem) => {
@@ -99,6 +92,6 @@ export const CartSlice = createSlice({
   },
 });
 
-export const { addItemToCart, removeItemFromCart, setCartMenuOpen, setNewAttributeSelectedIndex } =
+export const { addItemToCart, removeItemFromCart, setNewAttributeSelectedIndex } =
   CartSlice.actions;
 export const CartReducer = CartSlice.reducer;

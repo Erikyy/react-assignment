@@ -17,8 +17,23 @@ export default class StoreHeader extends React.Component {
             paddingRight: '6rem',
           }}
         >
-          <CurrencySwitcher />
-          <CartMenu />
+          <CurrencySwitcher
+            setCurrencySwitcherCLoseFunc={(func) => {
+              this.setCurrencySwitcherClosed = func;
+            }}
+            onCurrencySwitcherButtonClicked={() => {
+              this.setCartMenuClosed();
+            }}
+          />
+          <CartMenu
+            setCartCloseFunc={(func) => {
+              this.setCartMenuClosed = func;
+            }}
+            onCartButtonClicked={(open) => {
+              this.props.cartMenuOpen(open);
+              this.setCurrencySwitcherClosed();
+            }}
+          />
         </NavList>
       </Navbar>
     );

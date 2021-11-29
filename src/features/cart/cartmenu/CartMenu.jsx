@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from '@reduxjs/toolkit';
 import { withRouter } from 'react-router-dom';
 import getSymbolFromCurrency from 'currency-symbol-map';
 
@@ -14,12 +15,7 @@ import CartMenuItemDescription from '../../../common/components/cart/CartMenuIte
 import CartMenuAmountSelection from '../../../common/components/cart/CartMenuAmountSelection';
 import CartMenuItemImage from '../../../common/components/cart/CartMenuItemImage';
 
-import {
-  addItemToCart,
-  removeItemFromCart,
-  setCartMenuOpen,
-  setNewAttributeSelectedIndex,
-} from '../CartSlice';
+import { addItemToCart, removeItemFromCart, setNewAttributeSelectedIndex } from '../CartSlice';
 
 import './styles/CartMenu.css';
 
@@ -27,7 +23,6 @@ const mapStateToProps = (state) => {
   return {
     totalItemQuantity: state.CartReducer.totalItemQuantity,
     products: state.CartReducer.products,
-    cartMenuOpen: state.CartReducer.cartMenuOpen,
     activeCurrency: state.CurrencyReducer.activeCurrency,
   };
 };
@@ -35,11 +30,32 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   addItemToCart,
   removeItemFromCart,
-  setCartMenuOpen,
   setNewAttributeSelectedIndex,
 };
 
 class CartMenu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+    this.dropdownRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.props.setCartCloseFunc(this.closeMenu);
+  }
+
+  setOpenOrClosed() {
+    this.setState(
+      (prevState) => ({ open: !prevState.open }),
+      () => {
+        console.log(`Menu open: ${this.state.open}`);
+        this.props.onCartButtonClicked(this.state.open);
+      },
+    );
+  }
+
   redirectToCartPage() {
     this.props.history.push('/cart');
   }
@@ -55,6 +71,10 @@ class CartMenu extends React.Component {
     return totalPrice;
   }
 
+  closeMenu() {
+    this.setState({ open: false });
+  }
+
   render() {
     let tempTotalPrice = 0;
     let badge;
@@ -62,21 +82,29 @@ class CartMenu extends React.Component {
       badge = <Badge count={this.props.totalItemQuantity} />;
     }
     return (
-      <NavItem padding={0.1}>
+      <NavItem
+        onBlur={(e) => {
+          if (!this.dropdownRef.current.contains(e.relatedTarget) && this.state.open) {
+            this.setOpenOrClosed();
+          }
+        }}
+        ref={this.dropdownRef}
+        padding={0.1}
+      >
         <IconButton
           style={{
             padding: '12px',
             scale: '1.3',
           }}
           onClick={() => {
-            this.props.setCartMenuOpen(!this.props.cartMenuOpen);
+            this.setOpenOrClosed();
           }}
         >
           {badge}
           <CartIcon />
         </IconButton>
 
-        <DropDownMenu className="cart-dropdown" open={this.props.cartMenuOpen}>
+        <DropDownMenu className="cart-dropdown" open={this.state.open}>
           <DropDownItem
             style={{
               paddingBottom: '30px',
@@ -138,8 +166,10 @@ class CartMenu extends React.Component {
             <ButtonOutline
               className="button-outline"
               onClick={() => {
-                this.props.setCartMenuOpen(false);
-                this.redirectToCartPage();
+                this.setState({ open: false }, () => {
+                  this.props.onCartButtonClicked(this.state.open);
+                  this.redirectToCartPage();
+                });
               }}
             >
               VIEW BAG
@@ -151,5 +181,5 @@ class CartMenu extends React.Component {
     );
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CartMenu));
+const enhance = compose(withRouter, connect(mapStateToProps, mapDispatchToProps));
+export default enhance(CartMenu);
