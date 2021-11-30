@@ -4,9 +4,18 @@ export const NavItem = styled.li`
   padding: ${(props) => {
     return props.padding ? `${props.padding}rem;` : '1rem';
   }};
+  & > .nav-link {
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
 
   & > .nav-link-active {
     color: var(--color-green) !important;
+  }
+
+  &.nav-item-padding-one-half {
+    padding: 1.5rem;
   }
 `;
 
@@ -15,7 +24,8 @@ export const NavList = styled.ul`
   margin: 0;
   padding: 0;
   ${(props) =>
-    (props.left && 'justify-content: flex-start;') || (props.right && 'justify-content: flex-end;')}
+    (props.left && 'justify-content: flex-start; padding-left: 5rem;') ||
+    (props.right && 'justify-content: flex-end; padding-right: 6rem;')}
 `;
 
 export const NavLogo = styled.img`

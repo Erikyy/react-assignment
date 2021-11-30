@@ -32,7 +32,7 @@ class ProductsComponent extends React.Component {
     return (
       <div className="page-container">
         <div className="category-name">
-          <h1 style={{ fontSize: '42pt' }}>{this.props.activeCategory}</h1>
+          <h1 className="page-category-title">{this.props.activeCategory}</h1>
         </div>
         <div className="products-container">
           {this.props.products.map((item, index) => {

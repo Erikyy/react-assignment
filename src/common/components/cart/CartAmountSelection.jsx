@@ -10,6 +10,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin-left: auto;
   justify-content: space-between;
+
+  & > .menu-amount {
+    text-align: center;
+  }
+
+  ${(props) => (props.large ? 'font-size: 24pt;' : '')}
 `;
 
 const Button = styled.button`
@@ -41,44 +47,38 @@ const Button = styled.button`
     fill: #fff;
     stroke: #fff;
   }
+
+  & > .plus-icon {
+    display: block;
+  }
+
+  & > .minus-icon {
+    display: block;
+    padding-bottom: 4px;
+    padding-top: 4px;
+  }
 `;
 
-export default class CartMenuAmountSelection extends React.Component {
+export default class CartAmountSelection extends React.Component {
   render() {
     return (
-      <Wrapper style={this.props.style}>
+      <Wrapper large={this.props.large}>
         <Button
           large={this.props.large}
           onClick={() => {
             this.props.onAddClick();
           }}
         >
-          <PlusIcon
-            style={{
-              display: 'block',
-            }}
-          />
+          <PlusIcon className="plus-icon" />
         </Button>
-        <p
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          {this.props.data}
-        </p>
+        <p className="menu-amount">{this.props.data}</p>
         <Button
           large={this.props.large}
           onClick={() => {
             this.props.onRemoveClick();
           }}
         >
-          <MinusIcon
-            style={{
-              display: 'block',
-              paddingBottom: '4px',
-              paddingTop: '4px',
-            }}
-          />
+          <MinusIcon className="minus-icon" />
         </Button>
       </Wrapper>
     );

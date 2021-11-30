@@ -11,12 +11,7 @@ export default class StoreHeader extends React.Component {
       <Navbar>
         <Categories />
         <NavLogo src="/a-logo.png" size={40} />
-        <NavList
-          right
-          style={{
-            paddingRight: '6rem',
-          }}
-        >
+        <NavList right>
           <CurrencySwitcher
             setCurrencySwitcherCLoseFunc={(func) => {
               this.setCurrencySwitcherClosed = func;

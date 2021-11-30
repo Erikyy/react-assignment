@@ -1,0 +1,16 @@
+.cart-page-description-brand {
+  font-size: 30pt;
+}
+
+.cart-page-description-name {
+  padding-top: 5px;
+  font-weight: normal;
+  font-size: 30pt;
+}
+
+.cart-page-description-price {
+  font-weight: bold;
+  font-size: 24pt;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

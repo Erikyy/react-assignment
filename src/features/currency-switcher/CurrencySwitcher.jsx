@@ -5,8 +5,9 @@ import { fetchCurrencies, setActiveCurrency } from './CurrencySlice';
 import { NavItem } from '../../common/components/navigation/Navbar';
 import { Button } from '../../common/components/common/Button';
 import DropDownMenu from '../../common/components/navigation/DropDownMenu';
-import DropDownItem from '../../common/components/navigation/DropDownItem';
 import { ChevronDown, ChevronUp } from '../../icons/Icons';
+
+import './styles/CurrencySwitcher.css';
 
 const mapStateToProps = (state) => {
   const currencies = state.CurrencyReducer.currencies;
@@ -43,7 +44,7 @@ class CurrencySwitcher extends React.Component {
   render() {
     return (
       <NavItem
-        padding={0.1}
+        className="no-padding"
         onBlur={(e) => {
           if (!this.dropdownRef.current.contains(e.relatedTarget) && this.state.open) {
             this.setState((prevState) => ({ open: !prevState.open }));
@@ -53,10 +54,7 @@ class CurrencySwitcher extends React.Component {
         ref={this.dropdownRef}
       >
         <Button
-          style={{
-            padding: '12px',
-            display: 'flex',
-          }}
+          className="btn-flex btn-padding-10px"
           onClick={() => {
             this.setState(
               (prevState) => ({ open: !prevState.open }),
@@ -66,43 +64,31 @@ class CurrencySwitcher extends React.Component {
             );
           }}
         >
-          <p style={{ fontSize: '14pt' }}>{getSymbolFromCurrency(this.props.activeCurrency)}</p>
+          <p className="currency-button-symbol">
+            {getSymbolFromCurrency(this.props.activeCurrency)}
+          </p>
 
           {this.state.open ? (
-            <ChevronUp
-              style={{
-                paddingLeft: '10px',
-              }}
-            />
+            <ChevronUp className="chevron-up" />
           ) : (
-            <ChevronDown
-              style={{
-                paddingLeft: '10px',
-              }}
-            />
+            <ChevronDown className="chevron-down" />
           )}
         </Button>
-        <DropDownMenu
-          style={{
-            backgroundColor: '#fff',
-          }}
-          open={this.state.open}
-        >
+        <DropDownMenu open={this.state.open}>
           {this.props.status === 'success'
             ? this.props.currencies.map((currency, index) => {
                 return (
-                  <DropDownItem key={String(index)}>
+                  <div className="dropdown-item" key={String(index)}>
                     <Button
-                      style={{ display: 'flex' }}
                       onClick={() => {
                         this.props.setActiveCurrency(currency);
                       }}
                     >
-                      <p style={{ fontSize: '14pt' }}>{`${getSymbolFromCurrency(
+                      <p className="currency-symbol-and-name">{`${getSymbolFromCurrency(
                         currency,
                       )} ${currency}`}</p>
                     </Button>
-                  </DropDownItem>
+                  </div>
                 );
               })
             : ''}

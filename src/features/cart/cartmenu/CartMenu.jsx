@@ -5,14 +5,13 @@ import { withRouter } from 'react-router-dom';
 import getSymbolFromCurrency from 'currency-symbol-map';
 
 import { NavItem } from '../../../common/components/navigation/Navbar';
-import { ButtonOutline, ButtonPrimary, IconButton } from '../../../common/components/common/Button';
+import { Button, IconButton } from '../../../common/components/common/Button';
 import { CartIcon } from '../../../icons/Icons';
 import Badge from '../../../common/components/common/Badge';
 import DropDownMenu from '../../../common/components/navigation/DropDownMenu';
-import DropDownItem from '../../../common/components/navigation/DropDownItem';
 
 import CartMenuItemDescription from '../../../common/components/cart/CartMenuItemDescription';
-import CartMenuAmountSelection from '../../../common/components/cart/CartMenuAmountSelection';
+import CartAmountSelection from '../../../common/components/cart/CartAmountSelection';
 import CartMenuItemImage from '../../../common/components/cart/CartMenuItemImage';
 
 import { addItemToCart, removeItemFromCart, setNewAttributeSelectedIndex } from '../CartSlice';
@@ -88,13 +87,10 @@ class CartMenu extends React.Component {
           }
         }}
         ref={this.dropdownRef}
-        padding={0.1}
+        className="nav-item-no-padding"
       >
         <IconButton
-          style={{
-            padding: '12px',
-            scale: '1.3',
-          }}
+          className="padding-12px icon-btn-scaled"
           onClick={() => {
             this.setOpenOrClosed();
           }}
@@ -104,30 +100,16 @@ class CartMenu extends React.Component {
         </IconButton>
 
         <DropDownMenu className="cart-dropdown" open={this.state.open}>
-          <DropDownItem
-            style={{
-              paddingBottom: '30px',
-            }}
-          >
-            <p
-              style={{
-                fontWeight: 'bold',
-              }}
-            >
-              My Bag, {this.props.totalItemQuantity} items
+          <div className="dropdown-item padding-bottom-30px">
+            <p>
+              <strong>My Bag</strong>, {this.props.totalItemQuantity} items
             </p>
-          </DropDownItem>
+          </div>
           <div className="cart-menu-scrollable-menu">
             {this.props.products.map((item, index) => {
               tempTotalPrice = this.incrementTotalPrice(tempTotalPrice, item);
               return (
-                <DropDownItem
-                  key={String(index)}
-                  style={{
-                    padding: '15px',
-                    paddingBottom: '25px',
-                  }}
-                >
+                <div className="dropdown-item padding-bottom-25px padding-15px" key={String(index)}>
                   <div className="cart-item">
                     <CartMenuItemDescription
                       data={item.product}
@@ -136,7 +118,7 @@ class CartMenu extends React.Component {
                         this.props.setNewAttributeSelectedIndex({ name, idx, id: item.id });
                       }}
                     />
-                    <CartMenuAmountSelection
+                    <CartAmountSelection
                       data={item.quantity}
                       onAddClick={() => {
                         this.props.addItemToCart({ product: item.product, id: item.id });
@@ -147,11 +129,11 @@ class CartMenu extends React.Component {
                     />
                     <CartMenuItemImage imageSrc={item.product.data.gallery[0]} />
                   </div>
-                </DropDownItem>
+                </div>
               );
             })}
           </div>
-          <DropDownItem>
+          <div className="dropdown-item">
             <div className="cart-menu-total-amount-container">
               <p className="cart-menu-total-title">Total</p>
               <p className="cart-menu-total-amount">
@@ -160,9 +142,9 @@ class CartMenu extends React.Component {
                 }`}
               </p>
             </div>
-          </DropDownItem>
-          <DropDownItem className="cart-menu-button-container">
-            <ButtonOutline
+          </div>
+          <div className="dropdown-item cart-menu-button-container">
+            <Button
               className="button-outline"
               onClick={() => {
                 this.setState({ open: false }, () => {
@@ -172,9 +154,9 @@ class CartMenu extends React.Component {
               }}
             >
               VIEW BAG
-            </ButtonOutline>
-            <ButtonPrimary className="button-primary">CHECKOUT</ButtonPrimary>
-          </DropDownItem>
+            </Button>
+            <Button className="button-primary">CHECKOUT</Button>
+          </div>
         </DropDownMenu>
       </NavItem>
     );

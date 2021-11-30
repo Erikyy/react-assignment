@@ -3,10 +3,17 @@
   overflow: hidden;
   z-index: 1;
   position: absolute;
+  background-color: white;
 }
 
 .dropdown-menu {
   width: 100%;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
 }
 
 .dropdown-enter {

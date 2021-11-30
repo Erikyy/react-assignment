@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import CartPageItemDescriptionContainer from '../../../common/components/cart/CartPageItemDescriptionContainer';
 import CartPageItemImageContainer from '../../../common/components/cart/CartPageItemImageContainer';
-import CartMenuAmountSelection from '../../../common/components/cart/CartMenuAmountSelection';
+import CartAmountSelection from '../../../common/components/cart/CartAmountSelection';
 import { addItemToCart, removeItemFromCart, setNewAttributeSelectedIndex } from '../CartSlice';
 
 const Container = styled.div`
@@ -70,9 +70,8 @@ class CartPage extends React.Component {
                   }}
                   activeCurrency={this.props.activeCurrency}
                 />
-                <CartMenuAmountSelection
+                <CartAmountSelection
                   large
-                  style={{ marginLeft: 'auto', fontSize: '24pt' }}
                   data={item.quantity}
                   onAddClick={() => {
                     this.props.addItemToCart({ product: item.product, id: item.id });

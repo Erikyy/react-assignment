@@ -8,7 +8,7 @@ import {
   AttributeContainer,
   AttributeTitle,
 } from '../../common/components/product/ProductAttribute';
-import { ButtonPrimary } from '../../common/components/common/Button';
+import { Button } from '../../common/components/common/Button';
 import ChipGroup from '../../common/components/common/ChipGroup';
 import ProductImageSlider from '../../common/components/product/ProductImageSlider';
 import { addItemToCart } from '../cart/CartSlice';
@@ -118,10 +118,8 @@ class ProductDetailComponent extends React.Component {
             <p className="product-description-price">{`${getSymbolFromCurrency(
               this.getProductPrice().currency,
             )}${this.getProductPrice().amount}`}</p>
-            <ButtonPrimary
-              style={{
-                width: '100%',
-              }}
+            <Button
+              className="button-primary"
               onClick={() => {
                 if (this.props.product.inStock) {
                   this.props.addItemToCart({
@@ -134,7 +132,7 @@ class ProductDetailComponent extends React.Component {
               }}
             >
               {`${this.props.product.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}`}
-            </ButtonPrimary>
+            </Button>
             {/* disabled eslint for line below due to using sanitizer to sanitize html from api */}
             <div
               className="product-description"

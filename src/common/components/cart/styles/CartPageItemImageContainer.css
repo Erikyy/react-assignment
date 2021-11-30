@@ -1,4 +1,4 @@
-.image-gallery-button-container {
+.item-image-button-container {
   position: absolute;
   display: flex;
   top: 45%;
@@ -6,12 +6,25 @@
   justify-content: space-between;
 }
 
-.image-gallery-button {
+.item-image-button {
   border: none;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.1);
   width: 40px;
   height: 40px;
 }
-.image-gallery-button > svg {
+.item-image-button > svg {
   scale: 1.5;
+}
+
+.item-image-container {
+  width: 300px;
+  padding: 5px;
+  position: relative;
+}
+
+.item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  overflow: hidden;
 }

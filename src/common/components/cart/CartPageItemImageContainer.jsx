@@ -1,20 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { ChevronLeft, ChevronRight } from '../../../icons/Icons';
 import './styles/CartPageItemImageContainer.css';
-
-const Wrapper = styled.div`
-  width: 300px;
-  padding: 5px;
-  position: relative;
-`;
-
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  overflow: hidden;
-`;
 
 export default class CartPageItemImageContainer extends React.Component {
   constructor(props) {
@@ -44,25 +30,25 @@ export default class CartPageItemImageContainer extends React.Component {
 
   render() {
     return (
-      <Wrapper>
-        <div className="image-gallery-button-container">
+      <div className="item-image-container">
+        <div className="item-image-button-container">
           <button
-            className="image-gallery-button"
+            className="item-image-button"
             type="button"
             onClick={() => this.decremntGalleryIndex()}
           >
             <ChevronLeft />
           </button>
           <button
-            className="image-gallery-button"
+            className="item-image-button"
             type="button"
             onClick={() => this.incrementGalleryIndex()}
           >
             <ChevronRight />
           </button>
         </div>
-        <Image src={this.props.data[this.state.galleryIndex]} alt="img" />
-      </Wrapper>
+        <img className="item-image" src={this.props.data[this.state.galleryIndex]} alt="img" />
+      </div>
     );
   }
 }

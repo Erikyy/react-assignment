@@ -10,6 +10,10 @@
   text-transform: capitalize;
 }
 
+.page-category-title {
+  font-size: 42pt;
+}
+
 .products-container {
   display: grid;
 

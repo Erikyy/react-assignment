@@ -1,7 +1,7 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
 import React from 'react';
 import { CartIcon } from '../../../icons/Icons';
-import './ProductCard.css';
+import './styles/ProductCard.css';
 
 export default class ProductCard extends React.Component {
   render() {
@@ -9,13 +9,7 @@ export default class ProductCard extends React.Component {
       return element.currency === this.props.activeCurrency;
     });
     return (
-      <a
-        style={{
-          textDecoration: 'none',
-          color: 'black',
-        }}
-        href={`/product/${this.props.activeCategory}/${this.props.data.id}`}
-      >
+      <a className="card-link" href={`/product/${this.props.activeCategory}/${this.props.data.id}`}>
         <div className="card">
           {this.props.data.inStock ? (
             <div className="card-main">
@@ -30,11 +24,7 @@ export default class ProductCard extends React.Component {
                 type="button"
                 className="card-add-to-cart-button"
               >
-                <CartIcon
-                  style={{
-                    fill: '#fff',
-                  }}
-                />
+                <CartIcon className="product-card-cart-icon" />
               </button>
               <p className="product-card-name">{`${this.props.data.brand} ${this.props.data.name}`}</p>
               <p className="product-card-price">{`${getSymbolFromCurrency(price.currency)}${
@@ -44,13 +34,7 @@ export default class ProductCard extends React.Component {
           ) : (
             <div className="card-main">
               <div className="card-overlay">
-                <h2
-                  style={{
-                    color: 'var(--color-light-gray)',
-                  }}
-                >
-                  OUT OF STOCK
-                </h2>
+                <h2 className="card-out-of-stock-title">OUT OF STOCK</h2>
               </div>
               <div className="card-img-container">
                 <img className="card-img" src={this.props.data.gallery[0]} alt="img" />

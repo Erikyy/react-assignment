@@ -1,12 +1,8 @@
 import getSymbolFromCurrency from 'currency-symbol-map';
 import React from 'react';
-import styled from 'styled-components';
 import ChipGroup from '../common/ChipGroup';
 import { AttributeContainer, AttributeTitle } from '../product/ProductAttribute';
-
-const Wrapper = styled.div`
-  float: left;
-`;
+import './styles/CartPageItemDescription.css';
 
 export default class CartPageItemDescriptionContainer extends React.Component {
   render() {
@@ -14,31 +10,12 @@ export default class CartPageItemDescriptionContainer extends React.Component {
       (el) => el.currency === this.props.activeCurrency,
     );
     return (
-      <Wrapper>
-        <h2
-          style={{
-            fontSize: '30pt',
-          }}
-        >
-          {this.props.data.data.brand}
-        </h2>
-        <h2
-          style={{
-            paddingTop: '5px',
-            fontWeight: 'normal',
-            fontSize: '30pt',
-          }}
-        >
-          {this.props.data.data.name}
-        </h2>
-        <h3
-          style={{
-            fontWeight: 'bold',
-            fontSize: '24pt',
-            paddingTop: '1rem',
-            paddingBottom: '1rem',
-          }}
-        >{`${getSymbolFromCurrency(price.currency)}${price.amount}`}</h3>
+      <div>
+        <h2 className="cart-page-description-brand">{this.props.data.data.brand}</h2>
+        <h2 className="cart-page-description-name">{this.props.data.data.name}</h2>
+        <h3 className="cart-page-description-price">{`${getSymbolFromCurrency(price.currency)}${
+          price.amount
+        }`}</h3>
         {this.props.data.data.attributes.map((attribute, index) => {
           const attributeData = this.props.data.attributeData[index];
           if (attribute.type === 'swatch') {
@@ -69,7 +46,7 @@ export default class CartPageItemDescriptionContainer extends React.Component {
             </AttributeContainer>
           );
         })}
-      </Wrapper>
+      </div>
     );
   }
 }

@@ -7,19 +7,13 @@ class NavbarLink extends React.Component {
     const isActive = this.props.location.pathname.includes(this.props.path);
     return (
       <NavItem
+        className="nav-item-padding-one-half"
         style={{
           borderBottom: isActive ? 'solid 2px var(--color-green)' : '',
-          padding: '1.5rem',
         }}
       >
         <NavLink
-          style={{
-            color: 'black',
-            textDecoration: 'none',
-            textTransform: 'uppercase',
-          }}
-          className={isActive ? 'nav-link-active' : 'nav-link'}
-          activeStyle={{ color: 'var(--color-green)' }}
+          className={`${isActive ? 'nav-link-active' : null} nav-link`}
           to={this.props.path}
           onClick={() => this.props.onItemClicked()}
         >

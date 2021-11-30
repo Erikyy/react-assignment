@@ -19,7 +19,6 @@ export default class DropDownMenu extends React.Component {
       >
         <div
           className={`dropdown ${this.props.className}`}
-          style={this.props.style}
           ref={this.dropdownRef}
           onBlur={this.props.onBlur}
           onFocus={this.props.onFocus}

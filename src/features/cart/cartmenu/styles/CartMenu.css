@@ -3,6 +3,12 @@
   width: 100%;
 }
 
+.cart-menu-price {
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 16pt;
+}
+
 .cart-product-amount-selection {
   padding: 5px;
 }
@@ -67,7 +73,6 @@
 }
 
 .cart-dropdown {
-  background-color: white;
   margin-top: 0;
   padding-left: 0;
   padding-top: 0;

@@ -1,0 +1,9 @@
+.chevron-up,
+.chevron-down {
+  padding-left: 10px;
+}
+
+.currency-button-symbol,
+.currency-symbol-and-name {
+  font-size: 14pt;
+}
