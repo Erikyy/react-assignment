@@ -10,7 +10,7 @@ import {
   fetchCategories,
 } from '../features/categories/CategoriesSlice';
 import { fetchProducts } from '../features/products/ProductsSlice';
-import ProductDetailComponent from '../features/products/ProductDetailComponent';
+import ProductDescriptionPageComponent from '../features/products/ProductDescriptionPageComponent';
 import { fetchCurrencies, setActiveCurrency } from '../features/currency-switcher/CurrencySlice';
 import CartPage from '../features/cart/cartpage/CartPageComponet';
 import Overlay from '../common/components/common/Overlay';
@@ -73,7 +73,7 @@ class App extends React.Component {
               <Route path={`/${category.name}`} component={ProductsComponent} key={String(index)} />
             );
           })}
-          <Route path="/product/:category/:id" component={ProductDetailComponent} />
+          <Route path="/product/:category/:id" component={ProductDescriptionPageComponent} />
           <Route path="/cart" component={CartPage} />
         </Switch>
       </Router>

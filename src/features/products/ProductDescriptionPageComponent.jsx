@@ -27,7 +27,7 @@ const mapDispatchToProps = {
   addItemToCart,
 };
 
-class ProductDetailComponent extends React.Component {
+class ProductDescriptionPageComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -147,4 +147,4 @@ class ProductDetailComponent extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDetailComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDescriptionPageComponent);
