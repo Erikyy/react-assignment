@@ -1,4 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit';
+import { OverlappingFieldsCanBeMergedRule } from 'graphql';
 
 const IdBuilder = () => {
   let finalId = '';
@@ -10,6 +11,9 @@ const IdBuilder = () => {
     },
     build() {
       return finalId;
+    },
+    clear() {
+      finalId = '';
     },
   };
 };
@@ -79,9 +83,16 @@ export const CartSlice = createSlice({
     },
 
     setNewAttributeSelectedIndex: (state, action) => {
+      let oldId = '';
+      let newId = '';
       const newProducts = state.products.map((item) => {
+        const id = IdBuilder();
         const newAttributeData = item.product.attributeData.map((attrItem) => {
           if (attrItem.name === action.payload.name && item.id === action.payload.id) {
+            oldId = item.id;
+            id.addId(item.product.data.id);
+            id.addId(`-${action.payload.name.replace(/ /g, '-')}-${action.payload.idx}`);
+            newId = id.build();
             return {
               name: attrItem.name,
               selectedIndex: action.payload.idx,
@@ -89,14 +100,43 @@ export const CartSlice = createSlice({
           }
           return current(attrItem);
         });
+        if (id.build() !== '') {
+          newId = id.build();
+        }
+
         return {
           ...item,
+          id: id.build() === '' ? item.id : id.build(),
           product: {
             ...item.product,
             attributeData: newAttributeData,
           },
         };
       });
+
+      if (state.products.find((item) => item.id === newId)) {
+        // old state has that item now merge these items
+        let newQuantity = 0;
+        const newProductsMerged = current(state)
+          .products.filter((item) => {
+            if (item.id === oldId) {
+              newQuantity = item.quantity;
+            }
+            return item.id !== oldId;
+          })
+          .map((item) => {
+            return {
+              ...item,
+              quantity: item.quantity + newQuantity,
+            };
+          });
+
+        return {
+          ...state,
+          products: newProductsMerged,
+        };
+      }
+      // just leave this, it will change id for the product
       return {
         ...state,
         products: newProducts,
