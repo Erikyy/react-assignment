@@ -17,6 +17,7 @@ import Overlay from '../common/components/common/Overlay';
 
 const mapStateToProps = (state) => {
   return {
+    currencies: state.CurrencyReducer.currencies,
     categories: state.CategoriesReducer.categories,
     activeCategory: state.CategoriesReducer.activeCategory,
     activeCurrency: state.CurrencyReducer.activeCurrency,
@@ -41,9 +42,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchCurrencies();
-    this.props.pushCategory({ name: 'all' });
-    this.props.fetchCategories();
+    if (this.props.currencies.length === 0) {
+      this.props.fetchCurrencies();
+    }
+    if (this.props.categories.length === 0) {
+      this.props.pushCategory({ name: 'all' });
+      this.props.fetchCategories();
+    }
 
     if (this.props.activeCategory === '') {
       this.props.setActiveCategory('all');
@@ -52,8 +57,6 @@ class App extends React.Component {
     if (this.props.activeCurrency === '') {
       this.props.setActiveCurrency('USD');
     }
-
-    this.props.fetchProducts(this.props.activeCategory === 'all' ? '' : this.props.activeCategory);
   }
 
   render() {
