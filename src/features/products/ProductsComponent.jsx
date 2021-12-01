@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ProductCard from '../../common/components/product/ProductCard';
 import './styles/ProductPage.css';
 import { addItemToCart } from '../cart/CartSlice';
+import { fetchProducts } from './ProductsSlice';
 
 const mapStateToProps = (state) => {
   return {
@@ -14,8 +15,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   addItemToCart,
+  fetchProducts,
 };
+
 class ProductsComponent extends React.Component {
+  componentDidMount() {
+    this.props.fetchProducts(this.props.activeCategory === 'all' ? '' : this.props.activeCategory);
+  }
+
   mapAttributeDataForProduct = (attributes) => {
     const attributeData = [];
     attributes.map((item) => {
