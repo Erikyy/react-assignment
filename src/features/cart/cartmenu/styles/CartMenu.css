@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+.cart-menu-container {
+  padding: 5px;
+}
+
 .cart-menu-price {
   padding-top: 10px;
   font-weight: bold;

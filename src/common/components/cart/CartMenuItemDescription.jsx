@@ -1,12 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { AttributeContainer, AttributeTitle } from '../product/ProductAttribute';
 import ChipGroup from '../common/ChipGroup';
-
-const Wrapper = styled.div`
-  padding: 5px;
-`;
 
 export default class CartMenuItemDescription extends React.Component {
   render() {
@@ -15,7 +10,7 @@ export default class CartMenuItemDescription extends React.Component {
     });
 
     return (
-      <Wrapper>
+      <div className="cart-menu-container">
         <p>{this.props.data.data.brand}</p>
         <p>{this.props.data.data.name}</p>
         <p className="cart-menu-price">{`${getSymbolFromCurrency(price.currency)}${
@@ -53,7 +48,7 @@ export default class CartMenuItemDescription extends React.Component {
             </AttributeContainer>
           );
         })}
-      </Wrapper>
+      </div>
     );
   }
 }
