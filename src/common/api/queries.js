@@ -9,7 +9,7 @@ export const FETCH_CATEGORIES = gql`
 `;
 
 export const FETCH_PRODUCTS_BY_CATEGORY = gql`
-  query FetchCategory($title: String!) {
+  query FetchProducts($title: String!) {
     category(input: { title: $title }) {
       products {
         name
