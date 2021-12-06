@@ -12,6 +12,8 @@ npm install
 
 Copy contents of .env.example to .env file and configure provided environment variables
 
+## !!! Make sure to put correct api server url where junior react endpoint is hosted at
+
 ### Running the project
 
 ```
