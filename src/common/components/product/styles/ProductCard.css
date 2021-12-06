@@ -71,6 +71,10 @@
   right: 20px;
 }
 
+.card:hover {
+  box-shadow: 0 1px 20px 4px var(--color-even-lighter-gray);
+}
+
 .card:hover .card-add-to-cart-button {
   display: block;
 }
