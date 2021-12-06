@@ -31,22 +31,24 @@ export default class CartPageItemImageContainer extends React.Component {
   render() {
     return (
       <div className="item-image-container">
-        <div className="item-image-button-container">
-          <button
-            className="item-image-button"
-            type="button"
-            onClick={() => this.decremntGalleryIndex()}
-          >
-            <ChevronLeft />
-          </button>
-          <button
-            className="item-image-button"
-            type="button"
-            onClick={() => this.incrementGalleryIndex()}
-          >
-            <ChevronRight />
-          </button>
-        </div>
+        {this.props.data.length > 1 ? (
+          <div className="item-image-button-container">
+            <button
+              className="item-image-button"
+              type="button"
+              onClick={() => this.decremntGalleryIndex()}
+            >
+              <ChevronLeft />
+            </button>
+            <button
+              className="item-image-button"
+              type="button"
+              onClick={() => this.incrementGalleryIndex()}
+            >
+              <ChevronRight />
+            </button>
+          </div>
+        ) : null}
         <img className="item-image" src={this.props.data[this.state.galleryIndex]} alt="img" />
       </div>
     );
