@@ -1,5 +1,4 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import { OverlappingFieldsCanBeMergedRule } from 'graphql';
 
 const IdBuilder = () => {
   let finalId = '';
